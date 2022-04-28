@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.mycompany.idev.dto.Members" alias="Members"/>
+		<typeAlias type="com.mycompany.idev.dto.Answer" alias="Answer"/>
+		<typeAlias type="com.mycompany.idev.dto.Notice" alias="Notice"/>
+		<typeAlias type="com.mycompany.idev.dto.Payment" alias="Payment"/>
+		<typeAlias type="com.mycompany.idev.dto.Performance" alias="Performance"/>
+		<typeAlias type="com.mycompany.idev.dto.Question" alias="Question"/>
+		<typeAlias type="com.mycompany.idev.dto.Review_comment" alias="Review_comment"/>
+		<typeAlias type="com.mycompany.idev.dto.Review" alias="Review"/>
+		<typeAlias type="com.mycompany.idev.dto.Schedules" alias="Schedules"/>
+		<typeAlias type="com.mycompany.idev.dto.Ticket" alias="Ticket"/>
+		<typeAlias type="java.util.Map" alias="Map"/>
+	</typeAliases>
+
+</configuration>
+
+
