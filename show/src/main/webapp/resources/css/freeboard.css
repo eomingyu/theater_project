@@ -27,7 +27,12 @@
 	  background-color:gray;
 	  color:white;
 } 
-table { width: 70%; margin: 20px auto;}
+table { 
+	width: 70%; 
+	margin: 20px auto;
+	border-collapse:collapse;
+	
+}
 
 tr,th,td{
 		/* border: 1px solid #cccccc; */
@@ -36,7 +41,7 @@ tr,th,td{
 }
 th {
 		font-size:90%;
-		border-bottom:1px solid;
+		border-bottom:1px solid gray;
 }
 .title {
 	color: #1a1aff;
@@ -78,27 +83,11 @@ input[type=submit],input[type=reset],input[type=button]{
 .btn-small{width:70px;height:30px;background-color: skyblue; color:white;border: none}
 
 .btn{width:100px;height:30px;background-color: green;}
-
-.pagenum {
-    border: 1px solid gray;
-    color: #0178b6;
-    padding: 3px 5px;
-    text-decoration: none;  /*  밑줄제거  */
-    cursor: pointer;
-    display: inline-block;
-	text-align:center;
-	font-size: 9pt;
-}
-.pagenum:hover{
-	  background-color:gray;
-	  color:white;
-} 
+ 
 .td1{
-	background-color: #4080bf;
-    color:white;
     padding: 5px 10px;
-    text-align: center;
-    border-collapse:separate;
+    text-align: left;
+    border-collapse:collapse;
     border-radius: 6px;
    
 }

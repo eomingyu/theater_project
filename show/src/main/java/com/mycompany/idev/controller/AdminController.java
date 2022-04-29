@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.idev.HomeController;
-import com.mycompany.idev.dto.Members;
+import com.mycompany.idev.dto.Member;
 import com.mycompany.idev.dto.PageDto;
-import com.mycompany.idev.mapper.MembersMapper;
+import com.mycompany.idev.mapper.MemberMapper;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Autowired
-	MembersMapper mapper;
+	MemberMapper mapper;
 	
 	@RequestMapping("/main.do")
 	public String main() {
@@ -38,7 +38,7 @@ public class AdminController {
 		Map<String,Integer> map = new HashMap<>();
 		map.put("startNo", page.getStartNo());
 		map.put("endNo", page.getEndNo());
-		List<Members> list = mapper.getPageList(map);
+		List<Member> list = mapper.getPageList(map);
 		
 		model.addAttribute("page",page);
 		model.addAttribute("list",list);
@@ -60,7 +60,7 @@ public class AdminController {
 		
 		int startNo = page.getStartNo();
 		int endNo = page.getEndNo();
-		List<Members> list = mapper.searchPageList(columns,find,startNo,endNo);
+		List<Member> list = mapper.searchPageList(columns,find,startNo,endNo);
 		logger.info("[My]"+list);
 		
 		model.addAttribute("page",page);

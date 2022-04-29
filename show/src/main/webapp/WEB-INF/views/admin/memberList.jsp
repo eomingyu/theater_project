@@ -56,7 +56,7 @@
 		</tr>
 		<c:forEach var="vo" items="${list}" varStatus="status">
 		<tr>
-			<td>${status.count}</td> 	
+			<td>${status.count+(page.pageNo-1)*10}</td> 	
 	 		<td><%-- <a href="detail?idx=${vo.id}&pageNo=${page.pageNo}" class="title"> --%>${vo.id}</td>
 	 		<td>${vo.name }</td>
 	 		<td>${vo.birth_date}</td>

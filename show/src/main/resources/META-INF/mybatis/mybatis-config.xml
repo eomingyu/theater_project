@@ -5,7 +5,7 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.mycompany.idev.dto.Members" alias="Members"/>
+		<typeAlias type="com.mycompany.idev.dto.Member" alias="Member"/>
 		<typeAlias type="com.mycompany.idev.dto.Answer" alias="Answer"/>
 		<typeAlias type="com.mycompany.idev.dto.Notice" alias="Notice"/>
 		<typeAlias type="com.mycompany.idev.dto.Payment" alias="Payment"/>
