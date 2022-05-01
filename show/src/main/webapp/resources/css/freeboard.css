@@ -16,7 +16,7 @@
 .pagenum {
     border: 1px solid gray;
     color: #0178b6;
-    padding: 3px 5px;
+    padding: 3px 9px;
     text-decoration: none;  /*  밑줄제거  */
     cursor: pointer;
     display: inline-block;
@@ -27,6 +27,14 @@
 	  background-color:gray;
 	  color:white;
 } 
+span.pagenum{
+	border:1px solid gray;
+	font-weight:bold;
+	background-color:gray;
+	color:white;
+}
+
+
 table { 
 	width: 70%; 
 	margin: 20px auto;

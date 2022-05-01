@@ -25,13 +25,13 @@
 			SELECT rownum AS R, T.* FROM 
 				(select * from members
 		<if test="columns=='id'">
- where id like '%'||#{find}||'%'
+		 where id like '%'||#{find}||'%'
 		</if>
 		<if test="columns=='name'">
- where name like '%'||#{find}||'%'
+ 		where name like '%'||#{find}||'%'
 		</if>
 		<if test="columns=='authority'">
- where authority=#{find}
+		 where authority=#{find}
 		</if>
 		ORDER BY reg_date DESC) T )
 		WHERE R BETWEEN #{startNo} AND #{endNo}
