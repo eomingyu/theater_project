@@ -11,6 +11,18 @@
 		WHERE notice_idx=#{notice_idx}
 	</select>
 	
+	<!-- 글 수정하기 -->
+	<update id="updateNotice" parameterType="Map">
+		UPDATE notice 
+			<!-- SET notice_title=#{notice_title, jdbcType=VARCHAR}, notice_content=#{notice_content, jdbcType=VARCHAR} -->
+ 			SET notice_title=#{notice_title}, notice_content=#{notice_content}
+		WHERE notice_idx=#{notice_idx}
+	</update>
+	
+	<!-- 글 삭제하기 -->
+	<delete id="deleteNotice" parameterType="int">
+		DELETE FROM notice WHERE notice_idx=#{notice_idx}
+	</delete>
 	
 	<!-- 전체 공지사항 페이징 -->
 	<select id="getPageList" parameterType="Map" resultType="Notice">

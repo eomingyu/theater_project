@@ -10,6 +10,9 @@ import com.mycompany.idev.dto.Notice;
 public interface NoticeMapper {
 	List<Notice> selectAll();
 	Notice selectOne(int idx);
+	void updateNotice(@Param("notice_title") String title, @Param("notice_content") String content,@Param("notice_idx") int idx);
+	//void updateNotice(Notice notice);
+	void deleteNotice(int idx);
 	List<Notice> getPageList(Map<String,Integer> map);
 	int getCount();
 	List<Notice> search(Map<String,String> map);

@@ -17,6 +17,9 @@
 	font-family: 'IBM Plex Sans KR', sans-serif;	
 }
 </style>
+<script type="text/javascript">
+	if(${message != null}) alert('${message}');
+</script>
 </head>
 <body>
 <h3>공지사항 목록</h3>
@@ -47,7 +50,7 @@
 		<c:forEach var="vo" items="${list}" varStatus="status">
 		<tr>
 			<td>${status.count+(page.pageNo-1)*10}</td> 	
-	 		<td><a href="detail?idx=${vo.notice_idx}&pageNo=${page.pageNo}" class="title">${vo.notice_title}</a></td>
+	 		<td><a href="detail.do?idx=${vo.notice_idx}&pageNo=${page.pageNo}&columns=${columns}&find=${find}" class="title">${vo.notice_title}</a></td>
 	 		<td>
 	 		<fmt:formatDate value="${vo.notice_date}" pattern="yyyy-MM-dd"/>  <!-- 출력패턴 -->
 	 		</td>
@@ -84,11 +87,11 @@
 </div>
 <form action="" method="post">
 	<input name="columns" type="hidden">
-	<input name="find" type="hidden">		<!-- find[0] -->
+	<input name="find" type="hidden">		
 	<input name="pageNo" type="hidden">
 </form>
 <script type="text/javascript">
-var href=window.location.pathname;				//memberList.do 또는 search.do 가져오기
+	var href=window.location.pathname;				//memberList.do 또는 search.do 가져오기
 	function goPage(no){
 		const frm = document.forms[1];
 		frm.action=href;
