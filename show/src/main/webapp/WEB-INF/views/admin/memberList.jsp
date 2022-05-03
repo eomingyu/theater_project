@@ -15,7 +15,47 @@
 	font-family: 'Hahmlet', serif;
 	font-family: 'IBM Plex Sans KR', sans-serif;	
 }
+
 </style>
+<script type="text/javascript">
+	function updateAdmin(id,authority){
+		if(authority==0)
+			location.href="#"
+		else{
+			var form = document.createElement('form');
+			var input = document.createElement('input');
+			input.setAttribute('type', 'hidden');
+			input.setAttribute('name', 'id');
+			input.setAttribute('value', id);
+			
+			
+			form.appendChild(input);
+			form.setAttribute('method', 'post');
+			form.setAttribute('action', 'adminUpdate.do')
+			document.body.appendChild(form);
+			form.submit();
+		}
+	}
+	function deleteMember(id){
+		
+			var form = document.createElement('form');
+			var input = document.createElement('input');
+			input.setAttribute('type', 'hidden');
+			input.setAttribute('name', 'id');
+			input.setAttribute('value', id);
+			
+			
+			form.appendChild(input);
+			form.setAttribute('method', 'post');
+			form.setAttribute('action', 'memberDelete.do')
+			document.body.appendChild(form);
+			form.submit();
+	
+	}
+</script>
+<script type="text/javascript">
+	if(${message != null}) alert('${message}');
+</script>
 </head>
 <body>
 <h3>회원 목록</h3>
@@ -51,7 +91,7 @@
 		<th width="20%">생년월일</th>
 		<th width="20%">가입일자</th>
 		<th width="10%">구분</th>
-		<th width="7%">?</th>
+		<th width="7%"></th>
 		</tr>
 		<c:forEach var="vo" items="${list}" varStatus="status">
 		<tr>
@@ -78,7 +118,19 @@
 	 			</c:otherwise>
 	 		</c:choose> --%>
 	 		</td>
-	 		<td>?</td>
+	 		<td>
+<div class="dropdown">
+  <button class="dropbtn">•••</button>
+  <div class="dropdown-content">
+    <a href="javascript:updateAdmin('${vo.id}',${vo.authority})">관리자로 변경</a>
+    <a href="javascript:deleteMember('${vo.id}')">회원 삭제</a>
+  </div>
+</div>
+<%-- 	 			<form action="memberUpdate.do" method="post">
+	 			<input type="hidden" name="id" value="${vo.id}">
+					<button>정보 변경</button>
+				</form> --%>
+			</td>
 	 	</tr>
  	 	</c:forEach>
  	 	<!-- list의 데이터가 없을 때 list애트리뷰트가 null X,size()가 0(jstl의 함수) -->

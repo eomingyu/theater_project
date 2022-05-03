@@ -46,6 +46,7 @@ tr,th,td{
 		/* border: 1px solid #cccccc; */
 		padding: 4px;
 		text-align: left;
+		border-bottom: 1px solid #eee;
 }
 th {
 		font-size:90%;
@@ -143,9 +144,48 @@ input[type=submit],input[type=reset],input[type=button]{
 	display: none;
 }
 table.notice{
-	border:1px 0px solid lightgray;
-	border-top:3px solid black;
+	border:1px 0px solid #eee;
+	border-top:2px solid black;
 }
-td.notice{
-	background-color:lightgray;
+th.notice{
+	background-color:#eee;
+	border-bottom:1px solid #eee;
 }
+/* 회원목록 드롭다운 리스트 */
+.dropbtn {
+  background-color:white;
+  color: gray;
+  padding: 4px 16px;
+  font-size: 6px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius:5px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius:5px;
+  
+}
+
+.dropdown-content a:hover {background-color: coral;color:white;box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.2);}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #ddd;}

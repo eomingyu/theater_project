@@ -8,7 +8,10 @@ import org.apache.ibatis.annotations.Param;
 import com.mycompany.idev.dto.Member;
 
 public interface MemberMapper {
-	Member list();
+	List<Member> list();
+	Member getOne(String id);
+	void updateAdmin(String id);
+	void deleteMember(String id);
 	List<Member> getPageList(Map<String,Integer> map);
 	int getCount();
 	List<Member> search(Map<String,String> map);

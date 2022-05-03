@@ -21,16 +21,16 @@
 	<form action="updateSave.do" method="post">
 		<table class="notice" id="title">
 			<tr>
-				<td class="notice" width="20%">제목</td>
+				<th class="notice" width="20%">제목</th>
 				<td colspan="5">
 					<textarea style="width:100%;resize: none;" 
 					cols="1" name="title" required="required">${detail.notice_title}</textarea>
 				</td>
 			</tr>
 			<tr>
-				<td class="notice" width="20%">작성일</td>
+				<th class="notice" width="20%">작성일</th>
 				<td colspan="2">${detail.notice_date}</td>
-				<td class="notice" width="20%">조회수</td>
+				<th class="notice" width="20%">조회수</th>
 				<td colspan="2">${detail.notice_view}</td>
 			</tr>
 			<tr>

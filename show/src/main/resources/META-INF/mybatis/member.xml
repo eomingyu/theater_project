@@ -3,9 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.idev.mapper.MemberMapper">
-	<select id="list" resultType="Member">		<!-- 메인글에 대한 댓글 목록 가져오기 -->
-	select * from members
+	<select id="list" resultType="Member">		
+		SELECT * FROM members
 	</select>
+	<!-- 회원 1명 조회 -->
+	<select id="getOne" parameterType="String" resultType="Member">		
+		SELECT * FROM members
+		WHERE id=#{id}
+	</select>
+	
+	<!-- 관리자로 변경 -->
+	<update id="updateAdmin" parameterType="String">
+		UPDATE members 
+ 			SET authority=0
+		WHERE id=#{id}
+	</update>
+	
+	<!-- 회원 삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM members
+		WHERE id=#{id}
+	</delete>
 	
 	<!-- 전체 회원 페이징 -->
 	<select id="getPageList" parameterType="Map" resultType="Member">

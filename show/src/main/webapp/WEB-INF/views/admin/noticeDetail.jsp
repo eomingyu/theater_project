@@ -30,13 +30,13 @@ function deleteOk(){
 <div style="margin:auto;">
 	<table class="notice" id="title">
 		<tr>
-			<td class="notice" width="20%">제목</td>
+			<th class="notice" width="20%">제목</th>
 			<td colspan="5"><div>${detail.notice_title}</div></td>
 		</tr>
 		<tr>
-			<td class="notice" width="20%">작성일</td>
+			<th class="notice" width="20%">작성일</th>
 			<td colspan="2">${detail.notice_date}</td>
-			<td class="notice" width="20%">조회수</td>
+			<th class="notice" width="20%">조회수</th>
 			<td colspan="2">${detail.notice_view}</td>
 		</tr>
 		<tr>

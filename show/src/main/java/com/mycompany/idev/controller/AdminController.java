@@ -37,7 +37,7 @@ public class AdminController {
 	public String main() {
 		return "admin/main";
 	}
-	
+//회원 목록	
 	@RequestMapping("memberList.do")
 	public String list(@RequestParam(required=false, defaultValue = "1")
 	int pageNo,Model model) {
@@ -53,6 +53,7 @@ public class AdminController {
 		
 		return "admin/memberList";
 	}
+//검색하여 조회
 	@RequestMapping("search.do")
 	public String search(@RequestParam(required=false, defaultValue = "1")
 			int pageNo,@RequestParam String columns,
@@ -78,7 +79,35 @@ public class AdminController {
 		
 		return "admin/memberList";
 	}
+//관리자로 변경	
+	@PostMapping("adminUpdate.do")
+	public String adminUpdate(String id, Model model) {
+		Member vo = mapper.getOne(id);
+		model.addAttribute("vo",vo);
+		return "admin/memberUpdate";
+	}
+	@PostMapping("adminSave.do")
+	public String adminUpdateSave(String id, RedirectAttributes rda) {
+		mapper.updateAdmin(id);
+		rda.addFlashAttribute("message",id+"님을 관리자로 등록하였습니다.");
+		return "redirect:memberList.do";
+	}
+//회원 삭제	
+	@PostMapping("memberDelete.do")
+	public String memberDelete(String id, Model model) {
+		Member vo = mapper.getOne(id);
+		model.addAttribute("vo",vo);
+		return "admin/memberDelete";
+	}
+	@PostMapping("memberDeleteSave.do")
+	public String memberDeleteSave(String id, RedirectAttributes rda) {
+		mapper.deleteMember(id);
+		rda.addFlashAttribute("message",id+"님의 회원 정보를 삭제하였습니다.");
+		return "redirect:memberList.do";
+	}	
 	
+	
+//공지사항-----------------------------------------
 	@RequestMapping("noticeList.do")
 	public String noticeList(@RequestParam(required=false, defaultValue = "1")
 	int pageNo,Model model) {
