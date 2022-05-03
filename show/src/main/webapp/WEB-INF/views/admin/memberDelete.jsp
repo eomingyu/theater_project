@@ -17,7 +17,7 @@
 <title>회원 삭제</title>
 <script type="text/javascript">	
 	function deleteOk(id){		//삭제할 건지 확인
-		var answer = prompt(id+"님의 회원 정보를 삭제하시겠습니까?\n삭제하려면 '회원 삭제'을 입력하세요.","")
+		var answer = prompt(id+"님의 회원 정보를 삭제하시겠습니까?\n삭제하려면 '회원 삭제'를 입력하세요.","")
 		if(answer=='회원 삭제')
 			document.forms[0].submit();
 		else
