@@ -47,10 +47,12 @@
 			<button>저장</button>
 		</div>
 	</form>
+		<div style="text-align:center;">
 			<form action="detail.do">
 				<input name="idx" type="hidden" value="${detail.notice_idx}">
 				<button>취소</button>
 			</form>
+		</div>
 </div>
 <script type="text/javascript">
 /* 	function reset(){

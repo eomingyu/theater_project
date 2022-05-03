@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<h3>공지사항 수정</h3>
+<h3>공지사항 등록</h3>
 <hr>
 <div style="margin:auto;">
 	<form action="insert.do" method="post">

@@ -16,7 +16,6 @@
 <script type="text/javascript">
 function deleteOk(){
 	if(confirm('해당 글을 삭제하시겠습니까?')==true){
-		document.forms[1].action='delete.do';
 		document.forms[1].submit();
 	}
 }
@@ -52,7 +51,6 @@ function deleteOk(){
 </div>
 <!-- 수정, 삭제, 목록 버튼 -->
 <div style="text-align:center;">	
-		<a class="button" href="javascript:update()">수정</a>
 		<form action="update.do" method="post">
 			<input name="idx" type="hidden" value="${detail.notice_idx}">
 			<input name="detail" type="hidden" value="${detail}">
@@ -60,10 +58,10 @@ function deleteOk(){
 			<button>수정</button>
 		</form>
 		
-		<a class="button" href="javascript:deleteOk()">삭제</a>
-		<form action="" method="post">
+		<form action="delete.do" method="post">
  			<input name="idx" type="hidden" value="${detail.notice_idx}">
  			<input name="pageNo" type="hidden" value="${pageNo}">
+		 	<button type="button" onclick="deleteOk()">삭제</button>
 		 </form>
 		 
 	<form action="" method="post" name="formlist">
