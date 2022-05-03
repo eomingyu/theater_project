@@ -148,7 +148,19 @@ public class AdminController {
 		rda.addFlashAttribute("message","글이 수정되었습니다.");
 		return "redirect:detail.do";
 	}
+	@GetMapping("insert.do")
+	public String noticeInsert() {
+		
+		return "admin/noticeInsert";
+	}
 	
+	@PostMapping("insert.do")
+	public String noticeInsertSave(Notice vo, RedirectAttributes rda) {
+		notice_mapper.insertNotice(vo);
+		rda.addFlashAttribute("message", "공지사항이 등록되었습니다.");
+		
+		return "redirect:noticeList.do";
+	}
 	
 //	@PostMapping("update.do")
 //	public String noticeUpdate(@RequestParam(required=false, defaultValue = "1") int pageNo,

@@ -26,7 +26,7 @@
 			<li>공지사항
 				<ul>
 					<li><a href="noticeList.do">공지사항 목록</a></li>
-					<li>공지사항 등록</li>
+					<li><a href="insert.do">공지사항 등록</a></li>
 				</ul>
 			</li>
 		</ul>

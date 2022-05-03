@@ -77,7 +77,11 @@
 		WHERE notice_idx=#{notice_idx}
 	</update>
 
-
+	<!-- 글쓰기 -->
+	<insert id="insertNotice" parameterType="Notice">
+		INSERT INTO notice (notice_idx,notice_title,notice_content)
+		VALUES (notice_idx_seq.nextval,#{notice_title},#{notice_content})
+	</insert>
 
 
 

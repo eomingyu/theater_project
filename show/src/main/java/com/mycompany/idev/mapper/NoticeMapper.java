@@ -20,5 +20,5 @@ public interface NoticeMapper {
 								@Param("startNo") int startNo, @Param("endNo") int endNo);
 	int getSearchCount(Map<String,String> map);
 	void readCount(int idx);
-
+	void insertNotice(Notice vo);
 }
