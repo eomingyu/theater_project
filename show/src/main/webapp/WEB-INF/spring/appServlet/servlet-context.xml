@@ -23,6 +23,16 @@
 	
 	<context:component-scan base-package="com.mycompany.idev" />
 	
-	
+	<!-- 파일 업로드 처리를 위한 빈 설정 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 1kb=1024바이트
+			파일 업로드를 여러개 할 때 최대 크기, 파일 1개에 대한 최대 크기 제한
+		 -->
+		<beans:property name="maxUploadSize" value="104857600" /><!-- 100MB -->
+		<beans:property name="maxUploadSizePerFile"
+			value="20971520" /><!-- 20MB -->
+		<beans:property name="defaultEncoding" value="utf-8" />
+	</beans:bean>
 	
 </beans:beans>

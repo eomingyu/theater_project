@@ -100,12 +100,8 @@ input[type=submit],input[type=reset],input[type=button]{
     border-radius: 6px;
    
 }
-.title {
-	color: #1a1aff;
-	text-decoration: none;  /*  밑줄제거  */
-	font: bold;
-	text-align: center;
-}
+
+
 .comment {
 	border: 1px solid #dddddd;
 	padding : 8px 30px;

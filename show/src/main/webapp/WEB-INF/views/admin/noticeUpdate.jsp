@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/freeboard.css">
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=IBM+Plex+Sans+KR:wght@300&display=swap');
@@ -24,7 +24,7 @@
 				<th class="notice" width="20%">제목</th>
 				<td colspan="5">
 					<textarea style="width:100%;resize: none;" 
-					cols="1" name="title" required="required">${detail.notice_title}</textarea>
+					rows="1" name="title" required="required">${detail.notice_title}</textarea>
 				</td>
 			</tr>
 			<tr>

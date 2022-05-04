@@ -19,8 +19,10 @@ import com.mycompany.idev.HomeController;
 import com.mycompany.idev.dto.Member;
 import com.mycompany.idev.dto.Notice;
 import com.mycompany.idev.dto.PageDto;
+import com.mycompany.idev.dto.Performance;
 import com.mycompany.idev.mapper.MemberMapper;
 import com.mycompany.idev.mapper.NoticeMapper;
+import com.mycompany.idev.service.AdminService;
 
 @Controller
 @RequestMapping("/admin")
@@ -32,6 +34,12 @@ public class AdminController {
 	
 	@Autowired
 	NoticeMapper notice_mapper;
+	
+	private final AdminService service;
+	
+	public AdminController(AdminService service) {
+		this.service = service;
+	}
 	
 	@RequestMapping("/main.do")
 	public String main() {
@@ -191,18 +199,6 @@ public class AdminController {
 		return "redirect:noticeList.do";
 	}
 	
-//	@PostMapping("update.do")
-//	public String noticeUpdate(@RequestParam(required=false, defaultValue = "1") int pageNo,
-//			int notice_idx, String notice_title, String notice_content, RedirectAttributes rda) {
-//		//logger.info("[My]"+notice);
-//		logger.info("[My]"+pageNo);
-//		notice_mapper.updateNotice(notice_title,notice_content,notice_idx);
-//		rda.addAttribute("idx", notice_idx);
-//		rda.addAttribute("pageNo", pageNo);
-//		rda.addFlashAttribute("message","글이 수정되었습니다.");
-//		return "redirect:detail.do";
-//	}
-//	
 	
 	@PostMapping("delete.do")
 	public String noticeDelete(int idx, int pageNo, RedirectAttributes rda) {
@@ -213,4 +209,20 @@ public class AdminController {
 	}
 	
 
+//공연 등록
+	@GetMapping("performInsert.do")
+	public String performInsert() {
+		
+		return "admin/performInsert";
+	}
+	@PostMapping("performInsert.do")
+	public String performInsertSave(Performance vo){
+		logger.info("[My]"+vo);
+		try {
+			service.fileSave(vo);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} 
+		return "redirect:main.do";
+	}
 }

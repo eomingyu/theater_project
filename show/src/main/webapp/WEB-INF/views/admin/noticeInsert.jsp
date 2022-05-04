@@ -24,7 +24,7 @@
 				<th class="notice" width="20%">제목</th>
 				<td width="80%">
 					<textarea style="width:100%;resize: none;" 
-					cols="1" name="notice_title" required="required"></textarea>
+					rows="1" name="notice_title" required="required"></textarea>
 				</td>
 			</tr>
 			<tr>

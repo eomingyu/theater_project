@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 페이지</title>
 </head>
 <body>
 <header>
@@ -14,7 +14,7 @@
 			<li><a href="memberList.do">회원 목록</a></li>
 			<li>공연
 				<ul>
-					<li>공연 등록</li>
+					<li><a href="performInsert.do">공연 등록</a></li>
 					<li>공연 스케줄 등록</li>
 				</ul>
 			</li>
