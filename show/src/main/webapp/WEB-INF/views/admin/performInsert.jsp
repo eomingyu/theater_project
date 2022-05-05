@@ -83,13 +83,13 @@
 			<tr>
 				<th class="notice" width="20%">공연 제목</th>
 				<td width="80%">
-					<input type="text" name="perform_title" required>
+					<input type="text" name="perform_title">
 				</td>
 			</tr>
 			<tr>
 				<th class="notice" width="20%">관람 시간</th>
 				<td width="80%">
-					<input type="text" name="showtime" required>
+					<input type="text" name="showtime">
 				</td>
 			</tr>
 			<tr>
@@ -107,19 +107,19 @@
 			<tr>
 				<th class="notice" width="20%">공연 시작 일자</th>
 				<td width="80%">
-					<input type="date" name="start_date" required>
+					<input type="date" name="start_date">
 				</td>
 			</tr>
 			<tr>
 				<th class="notice" width="20%">공연 종료 일자</th>
 				<td width="80%">
-					<input type="date" name="end_date" required>
+					<input type="date" name="end_date">
 				</td>
 			</tr>
 			<tr>
 				<th class="notice" width="20%">공연 포스터</th>
 				<td width="80%">
-					<input type="file" name="pics" accept="image/*" required>
+					<input type="file" name="pics" accept="image/*">
 				</td>
 			</tr>
 			
@@ -128,7 +128,7 @@
 				<td width="80%">
 					<div>
 						<textarea  rows="20" cols="80" name="detail" id="detail"
-		                style="width:100%;resize: none;" placeholder="내용을 입력하세요." required="required"></textarea>
+		                style="width:100%;resize: none;" placeholder="내용을 입력하세요."></textarea>
 					</div>
 				</td>
 			</tr>
