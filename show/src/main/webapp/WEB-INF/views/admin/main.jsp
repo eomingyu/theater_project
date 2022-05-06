@@ -20,7 +20,7 @@
 			</li>
 			<li>1:1문의
 				<ul>
-					<li>1:1 문의 목록</li>
+					<li><a href="questionList.do">1:1 문의 목록</a></li>
 				</ul>
 			</li>
 			<li>공지사항

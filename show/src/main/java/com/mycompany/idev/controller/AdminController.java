@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mycompany.idev.HomeController;
 import com.mycompany.idev.dto.Member;
 import com.mycompany.idev.dto.Notice;
 import com.mycompany.idev.dto.PageDto;
@@ -225,4 +224,13 @@ public class AdminController {
 		} 
 		return "redirect:main.do";
 	}
+
+//1:1 문의 목록
+	@GetMapping("questionList.do")
+	public String questionList() {
+		
+		return "admin/questionList";
+	}
+	
+
 }
