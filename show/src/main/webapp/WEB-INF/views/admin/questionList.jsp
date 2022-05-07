@@ -135,14 +135,14 @@ var href=window.location.pathname;				//memberList.do 또는 search.do 가져오
 			}
 		});
 		//화면 표시 변경하기
- 		const authority = document.getElementById('status');		//span grade
+ 		const status = document.getElementById('status');		//span grade
 		const content = document.getElementById('content');
 		if('${columns}'=='status'){
-			authority.style.display='inline-block';
+			status.style.display='inline-block';
 			content.style.display='none';
 		}else{
 			content.style.display='inline-block';
-			authority.style.display='none';
+			status.style.display='none';
 		}
  		//검색 컬럼 선택 변경될 때
 		document.getElementById('columns').addEventListener("change",changeView);
@@ -150,17 +150,15 @@ var href=window.location.pathname;				//memberList.do 또는 search.do 가져오
 		function changeView(){
 			const col = document.forms[0].columns.value;
 			if(col=='status'){
-				authority.style.display='inline-block';
+				status.style.display='inline-block';
 				content.style.display='none';
 			}else{
 				content.style.display='inline-block';
-				authority.style.display='none';
+				status.style.display='none';
 				//form 요소 가져오기
 				document.forms[0].elements[1].value="";
 			}
 		}
-		
-		//authority.style.display='none';		//안보이게 하는 방법
    </script>
 </body>
 </html>
