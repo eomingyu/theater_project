@@ -7,8 +7,15 @@
 		SELECT * FROM notice
 	</select>
 	<select id="selectOne" parameterType="int" resultType="Notice">		
-		SELECT * FROM notice
-		WHERE notice_idx=#{notice_idx}
+		SELECT * 
+		FROM(SELECT
+			n.*,
+			LEAD(notice_idx,1,99999) OVER(ORDER BY notice_idx) AS next_idx,
+			LAG(notice_idx,1,-1) OVER(ORDER BY notice_idx) AS last_idx, 
+			LEAD(notice_title,1,'다음글이 없습니다.') OVER(ORDER BY notice_idx) AS next_title, 
+			LAG(notice_title,1,'이전글이 없습니다.') OVER(ORDER BY notice_idx) AS last_title 
+			FROM NOTICE n)
+		WHERE notice_idx =#{notice_idx}
 	</select>
 	
 	<!-- 글 수정하기 -->
@@ -83,7 +90,6 @@
 		VALUES (notice_idx_seq.nextval,#{notice_title},#{notice_content})
 	</insert>
 
-
-
+	
 
 </mapper>

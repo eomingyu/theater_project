@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,6 +74,39 @@ function deleteOk(){
 		<button type="button" onclick="goList()">목록</button>
 	</form>
 </div>
+<div style="margin:auto;">
+	<table class="notice" id="title">
+	<c:choose>
+		<c:when test="${detail.last_idx==-1}">
+		<tr>
+			<th class="notice" width="20%">이전글</th>
+			<td width="80%">${detail.last_title}</td>
+		</tr>
+		</c:when>
+		<c:otherwise>
+		<tr>
+			<th class="notice" width="20%"><label for="last">이전글</label></th>
+			<td width="80%"><a href="detail.do?idx=${detail.last_idx}" class="title" id="last">${detail.last_title}</a></td>
+		</tr>
+		</c:otherwise>
+	</c:choose>
+		<c:choose>
+		<c:when test="${detail.next_idx==99999}">
+		<tr>
+			<th class="notice" width="20%">다음글</th>
+			<td width="80%">${detail.next_title}</td>
+		</tr>
+		</c:when>
+		<c:otherwise>
+		<tr>
+			<th class="notice" width="20%"><label for="next">다음글</label></th>
+			<td width="80%"><a href="detail.do?idx=${detail.next_idx}" class="title" id="next">${detail.next_title}</a></td>
+		</tr>
+		</c:otherwise>
+	</c:choose>
+	</table>
+</div>
+
 
 <script type="text/javascript">
 const url = new URL(window.location.href);	

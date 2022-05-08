@@ -16,4 +16,9 @@ public class Notice {
 	private String notice_content;
 	private Date notice_date;
 	private int notice_view;
+	private int next_idx;
+	private int last_idx;
+	private String next_title;
+	private String last_title;
+	
 }
