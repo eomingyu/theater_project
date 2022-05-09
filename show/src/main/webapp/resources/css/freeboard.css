@@ -185,3 +185,8 @@ th.notice{
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #ddd;}
+
+/*list hover시 색*/
+.list:hover{
+	background-color: #f9f9f9;
+}

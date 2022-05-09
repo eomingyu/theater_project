@@ -115,10 +115,10 @@ const urlParams = url.searchParams;			//URLSearchParams 객체
 	function goList(){
 		const frm = document.formlist;
 		if(urlParams.get('find')==""){
-			frm.action="noticeList.do";
+			frm.action="noticelist.do";
 		}
 		else{
-			frm.action="noticeSearch.do";
+			frm.action="noticesearch.do";
 			frm.columns.value=urlParams.get('columns');
 			frm.find.value=urlParams.get('find');
 		}

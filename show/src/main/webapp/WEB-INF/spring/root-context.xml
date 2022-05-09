@@ -28,6 +28,7 @@
 				<value>classpath:META-INF/mybatis/member.xml</value>
 				<value>classpath:META-INF/mybatis/notice.xml</value>
 				<value>classpath:META-INF/mybatis/performance.xml</value>
+				<value>classpath:META-INF/mybatis/question.xml</value>
 			</list>
 		</property>
 		<property name="configLocation" 

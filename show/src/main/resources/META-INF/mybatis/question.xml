@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.idev.mapper.QuestionMapper">
+	<select id="selectAll" resultType="Question">
+		SELECT * FROM question
+	</select>
+	<select id="selectOne" parameterType="int" resultType="Question">
+		SELECT * FROM question WHERE question_idx=#{question_idx}
+	</select>
+	<!-- 전체 문의 페이징 -->
+	<select id="getPageList" parameterType="Map" resultType="Question">
+		SELECT * FROM (
+			SELECT rownum AS R, T.* FROM 
+				(SELECT * FROM question ORDER BY question_idx DESC) T )
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	<!-- 전체 문의 수 -->
+	<select id="getCount" resultType="int">
+		SELECT count(*) FROM question
+	</select>
+	
+	<!-- 검색 문의 페이징 -->
+	<select id="searchPageList" parameterType="Map" resultType="Question">
+		SELECT * FROM (
+			SELECT rownum AS R, T.* FROM 
+				(SELECT * from question
+		<if test="columns=='title'">
+		 WHERE question_title like '%'||#{find}||'%'
+		</if>
+		<if test="columns=='id'">
+ 		 WHERE id like '%'||#{find}||'%'
+		</if>
+		<if test="columns=='status'">
+		 WHERE status like '%'||#{find}||'%'
+		</if>
+		ORDER BY question_idx DESC) T )
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+	<!-- 검색 문의 수 -->
+	<select id="getSearchCount" parameterType="Map" resultType="int">
+		SELECT count(*) FROM question
+		<if test="columns=='title'">
+		 WHERE question_title like '%'||#{find}||'%'
+		</if>
+		<if test="columns=='id'">
+ 		 WHERE id like '%'||#{find}||'%'
+		</if>
+		<if test="columns=='status'">
+		 WHERE status like '%'||#{find}||'%'
+		</if>
+	</select>
+</mapper>

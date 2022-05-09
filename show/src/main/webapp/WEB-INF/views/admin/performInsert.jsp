@@ -78,7 +78,7 @@
 <h3>공연 등록</h3>
 <hr>
 <div style="margin:auto;">
-	<form action="performInsert.do" method="post" enctype="multipart/form-data">
+	<form action="performinsert.do" method="post" enctype="multipart/form-data">
 		<table class="notice" id="title">
 			<tr>
 				<th class="notice" width="20%">공연 제목</th>

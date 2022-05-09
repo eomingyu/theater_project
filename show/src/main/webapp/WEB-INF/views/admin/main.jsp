@@ -11,21 +11,21 @@
 	<nav>
 		<ul>
 			<li><a href="main.do">관리자 메인</a></li>
-			<li><a href="memberList.do">회원 목록</a></li>
+			<li><a href="memberlist.do">회원 목록</a></li>
 			<li>공연
 				<ul>
-					<li><a href="performInsert.do">공연 등록</a></li>
+					<li><a href="performinsert.do">공연 등록</a></li>
 					<li>공연 스케줄 등록</li>
 				</ul>
 			</li>
 			<li>1:1문의
 				<ul>
-					<li><a href="questionList.do">1:1 문의 목록</a></li>
+					<li><a href="questionlist.do">1:1 문의 목록</a></li>
 				</ul>
 			</li>
 			<li>공지사항
 				<ul>
-					<li><a href="noticeList.do">공지사항 목록</a></li>
+					<li><a href="noticelist.do">공지사항 목록</a></li>
 					<li><a href="insert.do">공지사항 등록</a></li>
 				</ul>
 			</li>

@@ -28,7 +28,7 @@
 <hr>
 <div style="margin:auto;">
 	<div style="text-align:right;">
-		<form action="noticeSearch.do" method="post">
+		<form action="noticesearch.do" method="post">
 			<select name="columns" id="columns">
 				<option value="title">제목</option>
 				<option value="content">내용</option>
@@ -39,7 +39,7 @@
 				<input name="find" placeholder="검색할 내용 입력" value="${find}">
 			</span>
 			<button>검색</button>
-			<button type="button" onclick="location.href='noticeList.do'">전체보기</button>
+			<button type="button" onclick="location.href='noticelist.do'">전체보기</button>
 		</form>
 	</div>
 	<table>
@@ -50,7 +50,7 @@
 		<th width="13%">조회수</th>
 		</tr>
 		<c:forEach var="vo" items="${list}" varStatus="status">
-		<tr>
+		<tr class="list">
 			<td>${status.count+(page.pageNo-1)*10}</td> 	
 	 		<td><a href="detail.do?idx=${vo.notice_idx}&pageNo=${page.pageNo}&columns=${columns}&find=${find}" class="title">${vo.notice_title}</a></td>
 	 		<td>

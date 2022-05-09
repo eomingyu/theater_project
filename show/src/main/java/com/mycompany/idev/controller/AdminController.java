@@ -19,8 +19,10 @@ import com.mycompany.idev.dto.Member;
 import com.mycompany.idev.dto.Notice;
 import com.mycompany.idev.dto.PageDto;
 import com.mycompany.idev.dto.Performance;
+import com.mycompany.idev.dto.Question;
 import com.mycompany.idev.mapper.MemberMapper;
 import com.mycompany.idev.mapper.NoticeMapper;
+import com.mycompany.idev.mapper.QuestionMapper;
 import com.mycompany.idev.service.AdminService;
 
 @Controller
@@ -34,6 +36,9 @@ public class AdminController {
 	@Autowired
 	NoticeMapper notice_mapper;
 	
+	@Autowired
+	QuestionMapper question_mapper;
+	
 	private final AdminService service;
 	
 	public AdminController(AdminService service) {
@@ -45,7 +50,7 @@ public class AdminController {
 		return "admin/main";
 	}
 //회원 목록	
-	@RequestMapping("memberList.do")
+	@RequestMapping("memberlist.do")
 	public String list(@RequestParam(required=false, defaultValue = "1")
 	int pageNo,Model model) {
 		PageDto page = new PageDto(pageNo,10,mapper.getCount());
@@ -87,35 +92,35 @@ public class AdminController {
 		return "admin/memberList";
 	}
 //관리자로 변경	
-	@PostMapping("adminUpdate.do")
+	@PostMapping("adminupdate.do")
 	public String adminUpdate(String id, Model model) {
 		Member vo = mapper.getOne(id);
 		model.addAttribute("vo",vo);
 		return "admin/memberUpdate";
 	}
-	@PostMapping("adminSave.do")
+	@PostMapping("adminsave.do")
 	public String adminUpdateSave(String id, RedirectAttributes rda) {
 		mapper.updateAdmin(id);
 		rda.addFlashAttribute("message",id+"님을 관리자로 등록하였습니다.");
-		return "redirect:memberList.do";
+		return "redirect:memberlist.do";
 	}
 //회원 삭제	
-	@PostMapping("memberDelete.do")
+	@PostMapping("memberdelete.do")
 	public String memberDelete(String id, Model model) {
 		Member vo = mapper.getOne(id);
 		model.addAttribute("vo",vo);
 		return "admin/memberDelete";
 	}
-	@PostMapping("memberDeleteSave.do")
+	@PostMapping("memberdeletesave.do")
 	public String memberDeleteSave(String id, RedirectAttributes rda) {
 		mapper.deleteMember(id);
 		rda.addFlashAttribute("message",id+"님의 회원 정보를 삭제하였습니다.");
-		return "redirect:memberList.do";
+		return "redirect:memberlist.do";
 	}	
 	
 	
 //공지사항-----------------------------------------
-	@RequestMapping("noticeList.do")
+	@RequestMapping("noticelist.do")
 	public String noticeList(@RequestParam(required=false, defaultValue = "1")
 	int pageNo,Model model) {
 		PageDto page = new PageDto(pageNo,10,notice_mapper.getCount());
@@ -130,7 +135,7 @@ public class AdminController {
 		return "admin/noticeList";
 	}
 	
-	@RequestMapping("noticeSearch.do")
+	@RequestMapping("noticesearch.do")
 	public String noticeSearch(@RequestParam(required=false, defaultValue = "1")
 				int pageNo, String columns, String find, Model model) {
 		//logger.info("[My]"+columns);
@@ -172,7 +177,7 @@ public class AdminController {
 		
 		return "admin/noticeUpdate";
 	}
-	@PostMapping("updateSave.do")
+	@PostMapping("updatesave.do")
 	public String noticeUpdateSave(@RequestParam(required=false, defaultValue = "1") int pageNo,
 //		Notice notice, RedirectAttributes rda){
 		int idx, String title,String content, RedirectAttributes rda) {
@@ -195,7 +200,7 @@ public class AdminController {
 		notice_mapper.insertNotice(vo);
 		rda.addFlashAttribute("message", "공지사항이 등록되었습니다.");
 		
-		return "redirect:noticeList.do";
+		return "redirect:noticelist.do";
 	}
 	
 	
@@ -204,17 +209,17 @@ public class AdminController {
 		notice_mapper.deleteNotice(idx);
 		rda.addAttribute("pageNo", pageNo);
 		rda.addFlashAttribute("message","글이 삭제되었습니다.");
-		return "redirect:noticeList.do";
+		return "redirect:noticelist.do";
 	}
 	
 
 //공연 등록
-	@GetMapping("performInsert.do")
+	@GetMapping("performinsert.do")
 	public String performInsert() {
 		
 		return "admin/performInsert";
 	}
-	@PostMapping("performInsert.do")
+	@PostMapping("performinsert.do")
 	public String performInsertSave(Performance vo){
 		logger.info("[My]"+vo);
 		try {
@@ -226,11 +231,48 @@ public class AdminController {
 	}
 
 //1:1 문의 목록
-	@GetMapping("questionList.do")
-	public String questionList() {
+	@RequestMapping("questionlist.do")
+	public String questionList(@RequestParam(required=false, defaultValue = "1")
+	int pageNo,Model model) {
+		PageDto page = new PageDto(pageNo,10,question_mapper.getCount());
+		
+		Map<String,Integer> map = new HashMap<>();
+		map.put("startNo", page.getStartNo());
+		map.put("endNo", page.getEndNo());
+		List<Question> list = question_mapper.getPageList(map);
+		
+		model.addAttribute("page",page);
+		model.addAttribute("list",list);
 		
 		return "admin/questionList";
 	}
 	
-
+	@RequestMapping("questionsearch.do")
+	public String questionSearch(@RequestParam(required=false, defaultValue = "1")
+			int pageNo,@RequestParam String columns,
+			@RequestParam(value = "find") String[] finds,Model model) {
+		String find = finds[0];
+		if(columns.equals("status")) find=finds[1];
+		logger.info("[My]"+columns);
+		Map<String,String> map = new HashMap<>();
+		map.put("columns",columns);
+		map.put("find",find);
+		
+		PageDto page = new PageDto(pageNo,10,question_mapper.getSearchCount(map));
+		
+		int startNo = page.getStartNo();
+		int endNo = page.getEndNo();
+		List<Question> list = question_mapper.searchPageList(columns,find,startNo,endNo);
+		logger.info("[My]"+list);
+		
+		model.addAttribute("columns",columns);
+		model.addAttribute("find",find);
+		model.addAttribute("page",page);
+		model.addAttribute("list",list);
+		
+		return "admin/questionList";
+	}
+	
+	
+	
 }

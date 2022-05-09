@@ -25,7 +25,7 @@
 <br><span style="color:#3d3;font-weight:bolder;">답변 완료</span></p>
 <div style="margin:auto;">
 	<div style="text-align:right;">
-		<form action="questionSearch.do" method="post">
+		<form action="questionsearch.do" method="post">
 			<select name="columns" id="columns">
 				<option value="id">아이디</option>
 				<option value="question_title">제목</option>
@@ -42,7 +42,7 @@
 				</select>
 			</span>
 			<button>검색</button>
-			<button type="button" onclick="location.href='questionList.do'">전체보기</button>
+			<button type="button" onclick="location.href='questionlist.do'">전체보기</button>
 		</form>
 	</div>
 	<table>
@@ -54,7 +54,7 @@
 			<th width="12%">답변 상태</th>
 		</tr>
 		<c:forEach var="vo" items="${list}" varStatus="status">
-		<tr>
+		<tr class="list">
 			<td>${vo.question_idx}</td> 	
 	 		<td><a href="questiondetail?idx=${vo.question_idx}&pageNo=${page.pageNo}" class="title">${vo.question_title}</a></td>
 	 		<td>${vo.id}</td>
@@ -135,7 +135,7 @@ var href=window.location.pathname;				//memberList.do 또는 search.do 가져오
 			}
 		});
 		//화면 표시 변경하기
- 		const status = document.getElementById('status');		//span grade
+ 		const status = document.getElementById('status');		
 		const content = document.getElementById('content');
 		if('${columns}'=='status'){
 			status.style.display='inline-block';
