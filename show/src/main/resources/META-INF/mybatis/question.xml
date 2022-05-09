@@ -9,6 +9,12 @@
 	<select id="selectOne" parameterType="int" resultType="Question">
 		SELECT * FROM question WHERE question_idx=#{question_idx}
 	</select>
+	<!-- 답변 상태 -->
+	<update id="updateStatus" parameterType="int">
+		UPDATE question
+			SET status='답변 완료'
+		WHERE question_idx = #{question_idx}
+	</update>
 	<!-- 전체 문의 페이징 -->
 	<select id="getPageList" parameterType="Map" resultType="Question">
 		SELECT * FROM (

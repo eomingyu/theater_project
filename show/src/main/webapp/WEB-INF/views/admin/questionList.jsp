@@ -21,8 +21,6 @@
 <body>
 <h3>1:1 문의 목록</h3>
 <hr>
-<p><span style="color:red;font-weight:bolder;">답변 대기</span>
-<br><span style="color:#3d3;font-weight:bolder;">답변 완료</span></p>
 <div style="margin:auto;">
 	<div style="text-align:right;">
 		<form action="questionsearch.do" method="post">
@@ -66,7 +64,7 @@
 		 			<span style="color:red;font-weight:bolder;">답변 대기</span>
 		 		</c:if>
 		 		<c:if test="${vo.status=='답변 완료'}">
-		 			<span style="color:green;font-weight:bolder;">답변 완료</span>
+		 			<span style="color:#3d3;font-weight:bolder;">답변 완료</span>
 		 		</c:if>
 	 		</td>
 	 		<td>

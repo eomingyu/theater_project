@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -287,5 +288,20 @@ public class AdminController {
 		model.addAttribute("pageNo", pageNo);
 		return "admin/questionDetail";
 	}
+	@Transactional
+	@PostMapping("questiondetail.do")
+	public String answerInsert(Answer vo,@RequestParam(required=false, defaultValue = "1") int pageNo, RedirectAttributes rda) {
+		answer_mapper.insertAnswer(vo);
+		Question detail = question_mapper.selectOne(vo.getQuestion_idx());
+		if(detail.getStatus().equals("답변 대기"))
+			question_mapper.updateStatus(vo.getQuestion_idx());
+
+		rda.addAttribute("idx", vo.getQuestion_idx());
+		rda.addAttribute("pageNo", pageNo);
+		rda.addFlashAttribute("message", "답변이 등록되었습니다.");
+		return "redirect:questiondetail.do";
+	}
+	
+	
 	
 }
