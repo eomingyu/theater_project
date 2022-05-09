@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.idev.mapper.AnswerMapper">
+	<select id="selectAnswer" parameterType="int" resultType="Answer">
+		SELECT * FROM answer 
+		WHERE question_idx=#{question_idx} 
+		ORDER BY answer_idx DESC
+	</select>
+	<insert id="insertAnswer" parameterType="Answer">
+		INSERT INTO answer (answer_idx,question_idx,answer_content)
+		VALUES (answer_idx_seq.nextval,#{question_idx},#{answer_content})
+	</insert>
+</mapper>

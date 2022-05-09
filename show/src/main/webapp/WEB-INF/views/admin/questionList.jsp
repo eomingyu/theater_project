@@ -56,7 +56,7 @@
 		<c:forEach var="vo" items="${list}" varStatus="status">
 		<tr class="list">
 			<td>${vo.question_idx}</td> 	
-	 		<td><a href="questiondetail?idx=${vo.question_idx}&pageNo=${page.pageNo}" class="title">${vo.question_title}</a></td>
+	 		<td><a href="questiondetail.do?idx=${vo.question_idx}&pageNo=${page.pageNo}" class="title">${vo.question_title}</a></td>
 	 		<td>${vo.id}</td>
 	 		<td>
 	 			<fmt:formatDate value="${vo.question_date}" pattern="yyyy-MM-dd"/>  <!-- 출력패턴 -->

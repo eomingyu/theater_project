@@ -9,7 +9,7 @@ import com.mycompany.idev.dto.Question;
 
 public interface QuestionMapper {
 	List<Question> selectAll();
-	Question selectOne();
+	Question selectOne(int idx);
 	List<Question> getPageList(Map<String,Integer> map);
 	int getCount();
 	List<Question> searchPageList(@Param("columns") String columns, @Param("find") String find, 
