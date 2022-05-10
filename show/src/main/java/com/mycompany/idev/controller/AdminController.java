@@ -288,14 +288,11 @@ public class AdminController {
 		model.addAttribute("pageNo", pageNo);
 		return "admin/questionDetail";
 	}
-	@Transactional
+//1:1 문의 답변 등록	
 	@PostMapping("questiondetail.do")
 	public String answerInsert(Answer vo,@RequestParam(required=false, defaultValue = "1") int pageNo, RedirectAttributes rda) {
-		answer_mapper.insertAnswer(vo);
-		Question detail = question_mapper.selectOne(vo.getQuestion_idx());
-		if(detail.getStatus().equals("답변 대기"))
-			question_mapper.updateStatus(vo.getQuestion_idx());
-
+		service.insertAnswer(vo);
+		
 		rda.addAttribute("idx", vo.getQuestion_idx());
 		rda.addAttribute("pageNo", pageNo);
 		rda.addFlashAttribute("message", "답변이 등록되었습니다.");
