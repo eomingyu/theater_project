@@ -3,16 +3,6 @@
 	border: 1px solid #cccccc;
 	border-radius: 4px;
 }
-.button {
-    background-color: green;
-    color:white;
-    padding: 5px 10px;
-    margin: 5px 10px;
-    text-decoration: none;  /*  밑줄제거  */
-    cursor: pointer;
-    display: inline-block;
-	text-align:center;
-}
 .pagenum {
     border: 1px solid gray;
     color: #0178b6;
@@ -58,23 +48,6 @@ th {
 	font: bold;
 	text-align: center;
 }
-.input1{
-	padding: 7px 15px;
-	border: 1px solid #4080bf;
-	border-radius: 9px;
-}
-.button {
-    background-color: green;
-    color:white;
-    padding: 5px 10px;
-    text-decoration: none;  /*  밑줄제거  */
-    cursor: pointer;
-    display: inline-block;
-	text-align:center;
-	border-radius: 4px;
-	width:100px;height:20px;
-	border:none;
-}
 
 input[type=submit],input[type=reset],input[type=button]{
     color:white;
@@ -85,10 +58,6 @@ input[type=submit],input[type=reset],input[type=button]{
 	border: none;
 	cursor: pointer;
 } 
-.btnGreen {
-	 background-color: green;width:100px;height:30px;
-}
-
 .btn-small{width:70px;height:30px;background-color: skyblue; color:white;border: none}
 
 .btn{width:100px;height:30px;background-color: green;}
@@ -189,4 +158,100 @@ th.notice{
 /*list hover시 색*/
 .list:hover{
 	background-color: #f9f9f9;
+}	
+/* 메뉴바 include */	
+.accordion, #logo{
+  background-color: #3498db;
+  color: #fafafa;
+  cursor: pointer;
+  padding: 14px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 
+    -1px -1px 1px #777,
+    1px 1px 1px #555;
+}
+#logo{
+	text-align:center;
+	height:68px;
+	font-size:22px;
+	border-right:1px solid #2980b9;
+	border-bottom:1px solid #2070a9;
+}
+#logo:hover{
+	background-color: #2980b9;
+	font-size:23px;
+}
+.active, .accordion:hover {
+  background-color: #2980b9;
+}
+
+.panel {
+  padding: 0;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.panel > div{
+	margin:0;
+	background-color: #444;
+	padding: 0;
+	width:100%;
+}
+.panel > div > a{
+	text-decoration: none;
+	color:#fafafa;
+	display:block;
+    font-size: 15px;
+    padding: 10px 15px;
+    font-weight: 600;
+    text-shadow: 
+    -1px -1px 1px #777;
+}
+.panel > div>a:hover{
+	background-color: #333;
+    border-left:4px solid #2980b9;
+    padding-left: 11px;
+}
+
+nav{
+    position:fixed;
+    top: 0;
+    left: 0;
+    background-color: #3498db;
+    height: 100%;
+}
+.menubar{
+	width:200px;
+	margin: 0;
+    padding: 0;
+}
+.icon{
+	margin:10px;
+	margin-right:20px;
+	
+}
+.icon>i{
+	width:25px;
+}
+section{
+	margin-left:220px;
+}
+
+.accordion:not([type="button"]):after {
+  content: '\23F7';
+  color: #fafafa;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:not([type="button"]):after {
+  content: "\23F6";
 }

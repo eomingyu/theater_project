@@ -73,71 +73,76 @@
 			form.submit();
 	}
 </script>
+<script src="https://kit.fontawesome.com/7ebf19920b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<h3>공연 등록</h3>
-<hr>
-<div style="margin:auto;">
-	<form action="performinsert.do" method="post" enctype="multipart/form-data">
-		<table class="notice" id="title">
-			<tr>
-				<th class="notice" width="20%">공연 제목</th>
-				<td width="80%">
-					<input type="text" name="perform_title">
-				</td>
-			</tr>
-			<tr>
-				<th class="notice" width="20%">관람 시간</th>
-				<td width="80%">
-					<input type="text" name="showtime">
-				</td>
-			</tr>
-			<tr>
-				<th class="notice" width="20%">관람 등급</th>
-				<td width="80%">
-					<select name="grade" id="grade">
-						<option value="none" selected disabled>----선택----</option>
-						<option value="전체">전체 관람가</option>
-						<option value="12세 이상">12세 이상 관람가</option>
-						<option value="15세 이상">15세 이상 관람가</option>
-						<option value="18세 이상">18세 이상 관람가</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th class="notice" width="20%">공연 시작 일자</th>
-				<td width="80%">
-					<input type="date" name="start_date">
-				</td>
-			</tr>
-			<tr>
-				<th class="notice" width="20%">공연 종료 일자</th>
-				<td width="80%">
-					<input type="date" name="end_date">
-				</td>
-			</tr>
-			<tr>
-				<th class="notice" width="20%">공연 포스터</th>
-				<td width="80%">
-					<input type="file" name="pics" accept="image/*">
-				</td>
-			</tr>
-			
-			<tr>
-				<th class="notice" width="20%">상세 내용</th>
-				<td width="80%">
-					<div>
-						<textarea  rows="20" cols="80" name="detail" id="detail"
-		                style="width:100%;resize: none;" placeholder="내용을 입력하세요."></textarea>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<div style="text-align:center;">
-			<button type="button" onclick="validCheck()">등록</button>
-			<button type="button" onclick="location.href='main.do'">취소</button>
-		</div>
-	</form>
-</div>
+<!-- 메뉴바 include -->
+<%@include file="menubar.jsp" %>
+<section>
+	<h3>공연 등록</h3>
+	<hr>
+	<div style="margin:auto;">
+		<form action="performinsert.do" method="post" enctype="multipart/form-data">
+			<table class="notice" id="title">
+				<tr>
+					<th class="notice" width="20%">공연 제목</th>
+					<td width="80%">
+						<input type="text" name="perform_title">
+					</td>
+				</tr>
+				<tr>
+					<th class="notice" width="20%">관람 시간</th>
+					<td width="80%">
+						<input type="text" name="showtime">
+					</td>
+				</tr>
+				<tr>
+					<th class="notice" width="20%">관람 등급</th>
+					<td width="80%">
+						<select name="grade" id="grade">
+							<option value="none" selected disabled>----선택----</option>
+							<option value="전체">전체 관람가</option>
+							<option value="12세 이상">12세 이상 관람가</option>
+							<option value="15세 이상">15세 이상 관람가</option>
+							<option value="18세 이상">18세 이상 관람가</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th class="notice" width="20%">공연 시작 일자</th>
+					<td width="80%">
+						<input type="date" name="start_date">
+					</td>
+				</tr>
+				<tr>
+					<th class="notice" width="20%">공연 종료 일자</th>
+					<td width="80%">
+						<input type="date" name="end_date">
+					</td>
+				</tr>
+				<tr>
+					<th class="notice" width="20%">공연 포스터</th>
+					<td width="80%">
+						<input type="file" name="pics" accept="image/*">
+					</td>
+				</tr>
+				
+				<tr>
+					<th class="notice" width="20%">상세 내용</th>
+					<td width="80%">
+						<div>
+							<textarea  rows="20" cols="80" name="detail" id="detail"
+			                style="width:100%;resize: none;" placeholder="내용을 입력하세요."></textarea>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div style="text-align:center;">
+				<button type="button" onclick="validCheck()">등록</button>
+				<button type="button" onclick="location.href='main.do'">취소</button>
+			</div>
+		</form>
+	</div>
+</section>
 </body>
 </html>

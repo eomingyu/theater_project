@@ -5,33 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/freeboard.css">
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=IBM+Plex+Sans+KR:wght@300&display=swap');
+*{
+	font-family: 'Hahmlet', serif;
+	font-family: 'IBM Plex Sans KR', sans-serif;	
+}
+</style>
+<script src="https://kit.fontawesome.com/7ebf19920b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
-	<nav>
-		<ul>
-			<li><a href="main.do">관리자 메인</a></li>
-			<li><a href="memberlist.do">회원 목록</a></li>
-			<li>공연
-				<ul>
-					<li><a href="performinsert.do">공연 등록</a></li>
-					<li>공연 스케줄 등록</li>
-				</ul>
-			</li>
-			<li>1:1문의
-				<ul>
-					<li><a href="questionlist.do">1:1 문의 목록</a></li>
-				</ul>
-			</li>
-			<li>공지사항
-				<ul>
-					<li><a href="noticelist.do">공지사항 목록</a></li>
-					<li><a href="insert.do">공지사항 등록</a></li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
-</header>
+<!-- 메뉴바 include -->
+<%@include file="menubar.jsp" %>
 
 
 </body>
