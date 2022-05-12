@@ -211,8 +211,6 @@ th.notice{
     font-size: 15px;
     padding: 10px 15px;
     font-weight: 600;
-    text-shadow: 
-    -1px -1px 1px #777;
 }
 .panel > div>a:hover{
 	background-color: #333;

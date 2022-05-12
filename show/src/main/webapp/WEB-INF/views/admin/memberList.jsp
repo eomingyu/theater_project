@@ -20,7 +20,7 @@
 <script type="text/javascript">
 	function updateAdmin(id,authority){
 		if(authority==0)
-			location.href="#"
+			location.href="javascript:void(0);"
 		else{
 			var form = document.createElement('form');
 			var input = document.createElement('input');
@@ -54,9 +54,9 @@
 	}
 </script>
 <script type="text/javascript">
-	setTimeout(function(){			//setTimeout 설정(100ms)
+	setTimeout(function(){			//setTimeout 설정(210ms)
 		if(${message != null}) alert('${message}');
-	},100);
+	},210);
 </script>
 <script src="https://kit.fontawesome.com/7ebf19920b.js" crossorigin="anonymous"></script>
 </head>
@@ -68,7 +68,7 @@
 	<hr>
 	<div style="margin:auto;">
 		<div style="text-align:right;">
-			<form action="search.do" method="post">
+			<form action="membersearch.do" method="post">
 				<select name="columns" id="columns">
 					<option value="id">아이디</option>
 					<option value="name">이름</option>

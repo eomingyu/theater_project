@@ -17,9 +17,9 @@
 }
 </style>
 <script type="text/javascript">
-	setTimeout(function(){			//setTimeout 설정(100ms)
+	setTimeout(function(){			//setTimeout 설정(210ms)
 		if(${message != null}) alert('${message}');
-	},100);
+	},210);
 </script>
 <script src="https://kit.fontawesome.com/7ebf19920b.js" crossorigin="anonymous"></script>
 </head>

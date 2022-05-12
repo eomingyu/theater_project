@@ -22,7 +22,7 @@
 	<h3>공지사항 등록</h3>
 	<hr>
 	<div style="margin:auto;">
-		<form action="insert.do" method="post">
+		<form action="noticeinsert.do" method="post">
 			<table class="notice" id="title">
 				<tr>
 					<th class="notice" width="20%">제목</th>

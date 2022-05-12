@@ -17,7 +17,7 @@
 				<div class="panel">
 					<div><a href="performinsert.do"><span class="icon"><i class="fa-solid fa-angle-right"></i></span>
 						공연 등록</a></div>
-					<div><a href="#"><span class="icon"><i class="fa-solid fa-angle-right"></i></span>
+					<div><a href="scheduleinsert.do"><span class="icon"><i class="fa-solid fa-angle-right"></i></span>
 						공연 스케줄 등록</a></div>
 				</div>
 			<button class="accordion">
@@ -31,7 +31,7 @@
 				<div class="panel">
 					<div><a href="noticelist.do"><span class="icon"><i class="fa-solid fa-angle-right"></i></span>
 						공지사항 목록</a></div>
-					<div><a href="insert.do"><span class="icon"><i class="fa-solid fa-angle-right"></i></span>
+					<div><a href="noticeinsert.do"><span class="icon"><i class="fa-solid fa-angle-right"></i></span>
 						공지사항 등록</a></div>
 				</div>		
 		</div>	
@@ -53,9 +53,9 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 var href=window.location.pathname;
-if(href.indexOf('member')!=-1)
+if(href.indexOf('member')!=-1 || href.indexOf('adminupdate')!=-1)
 	acc[1].classList.add("active");
-else if(href.indexOf('perform')!=-1){
+else if(href.indexOf('perform')!=-1 || href.indexOf('schedule')!=-1){
 	acc[2].classList.add("active");
 	acc[2].nextElementSibling.style.maxHeight = acc[2].nextElementSibling.scrollHeight + "px";
 }

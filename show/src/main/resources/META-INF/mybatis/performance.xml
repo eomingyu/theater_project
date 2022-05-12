@@ -9,6 +9,18 @@
 		VALUES(perform_idx_seq.nextval, #{perform_title}, #{poster},
 		 		#{showtime}, #{grade}, #{detail}, #{start_date}, #{end_date})
 	</insert>
+	
+	<select id="selectScheduledPerform" resultType="Performance">
+	<![CDATA[
+		SELECT * FROM performance
+		WHERE start_date > sysdate+1
+		ORDER BY start_date 
+	]]>
+	</select>
+	<select id="getOne" resultType="Performance" parameterType="int">
+		SELECT * FROM performance
+		WHERE perform_idx=#{perform_idx}
+	</select>	
 </mapper>
 
 

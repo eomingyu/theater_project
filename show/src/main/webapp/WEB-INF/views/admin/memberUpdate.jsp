@@ -63,7 +63,7 @@
 		 		</td>
 		 	</tr>
 		</table>
-		<form action="adminsave.do" method="post">
+		<form action="adminupdatesave.do" method="post">
 			<input type="hidden" name="id" value="${vo.id}">
 			<div style="text-align:center">
 				<button type="button" onclick="confirm('${vo.id}');">변경</button>

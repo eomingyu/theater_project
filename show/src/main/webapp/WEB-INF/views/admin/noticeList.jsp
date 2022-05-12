@@ -20,7 +20,7 @@
 <script type="text/javascript">
 	setTimeout(function(){			//setTimeout 설정(100ms)
 		if(${message != null}) alert('${message}');
-	},100);
+	},210);
 </script>
 <script src="https://kit.fontawesome.com/7ebf19920b.js" crossorigin="anonymous"></script>
 </head>
@@ -56,7 +56,7 @@
 			<c:forEach var="vo" items="${list}" varStatus="status">
 			<tr class="list">
 				<td>${status.count+(page.pageNo-1)*10}</td> 	
-		 		<td><a href="detail.do?idx=${vo.notice_idx}&pageNo=${page.pageNo}&columns=${columns}&find=${find}" class="title">${vo.notice_title}</a></td>
+		 		<td><a href="noticedetail.do?idx=${vo.notice_idx}&pageNo=${page.pageNo}&columns=${columns}&find=${find}" class="title">${vo.notice_title}</a></td>
 		 		<td>
 		 		<fmt:formatDate value="${vo.notice_date}" pattern="yyyy-MM-dd"/>  <!-- 출력패턴 -->
 		 		</td>

@@ -22,9 +22,9 @@ function deleteOk(){
 }
 </script>
 <script type="text/javascript">
-	setTimeout(function(){			//setTimeout 설정(100ms)
+	setTimeout(function(){			//setTimeout 설정(210ms)
 		if(${message != null}) alert('${message}');
-	},100);
+	},210);
 </script>
 <script src="https://kit.fontawesome.com/7ebf19920b.js" crossorigin="anonymous"></script>
 </head>
@@ -58,14 +58,14 @@ function deleteOk(){
 	</div>
 	<!-- 수정, 삭제, 목록 버튼 -->
 	<div style="text-align:center;">	
-			<form action="update.do" method="post">
+			<form action="noticeupdate.do" method="post">
 				<input name="idx" type="hidden" value="${detail.notice_idx}">
 				<input name="detail" type="hidden" value="${detail}">
 				<input name="pageNo" type="hidden" value="${pageNo}">
 				<button>수정</button>
 			</form>
 			
-			<form action="delete.do" method="post">
+			<form action="noticedelete.do" method="post">
 	 			<input name="idx" type="hidden" value="${detail.notice_idx}">
 	 			<input name="pageNo" type="hidden" value="${pageNo}">
 			 	<button type="button" onclick="deleteOk()">삭제</button>
@@ -90,7 +90,7 @@ function deleteOk(){
 			<c:otherwise>
 			<tr>
 				<th class="notice" width="20%"><label for="last">이전글</label></th>
-				<td width="80%"><a href="detail.do?idx=${detail.last_idx}" class="title" id="last">${detail.last_title}</a></td>
+				<td width="80%"><a href="noticedetail.do?idx=${detail.last_idx}" class="title" id="last">${detail.last_title}</a></td>
 			</tr>
 			</c:otherwise>
 		</c:choose>
@@ -104,7 +104,7 @@ function deleteOk(){
 			<c:otherwise>
 			<tr>
 				<th class="notice" width="20%"><label for="next">다음글</label></th>
-				<td width="80%"><a href="detail.do?idx=${detail.next_idx}" class="title" id="next">${detail.next_title}</a></td>
+				<td width="80%"><a href="noticedetail.do?idx=${detail.next_idx}" class="title" id="next">${detail.next_title}</a></td>
 			</tr>
 			</c:otherwise>
 		</c:choose>

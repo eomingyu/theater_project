@@ -74,6 +74,11 @@
 	}
 </script>
 <script src="https://kit.fontawesome.com/7ebf19920b.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	setTimeout(function(){			//setTimeout 설정(210ms)
+		if(${message != null}) alert('${message}');
+	},210);
+</script>
 </head>
 <body>
 <!-- 메뉴바 include -->

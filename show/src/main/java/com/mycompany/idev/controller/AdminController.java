@@ -22,10 +22,13 @@ import com.mycompany.idev.dto.Notice;
 import com.mycompany.idev.dto.PageDto;
 import com.mycompany.idev.dto.Performance;
 import com.mycompany.idev.dto.Question;
+import com.mycompany.idev.dto.Schedules;
 import com.mycompany.idev.mapper.AnswerMapper;
 import com.mycompany.idev.mapper.MemberMapper;
 import com.mycompany.idev.mapper.NoticeMapper;
+import com.mycompany.idev.mapper.PerformanceMapper;
 import com.mycompany.idev.mapper.QuestionMapper;
+import com.mycompany.idev.mapper.SchedulesMapper;
 import com.mycompany.idev.service.AdminService;
 
 @Controller
@@ -44,6 +47,12 @@ public class AdminController {
 	
 	@Autowired
 	AnswerMapper answer_mapper;
+	
+	@Autowired
+	PerformanceMapper perform_mapper;
+	
+	@Autowired
+	SchedulesMapper schedule_mapper;
 	
 	private final AdminService service;
 	
@@ -72,7 +81,7 @@ public class AdminController {
 		return "admin/memberList";
 	}
 //검색하여 조회
-	@RequestMapping("search.do")
+	@RequestMapping("membersearch.do")
 	public String search(@RequestParam(required=false, defaultValue = "1")
 			int pageNo,@RequestParam String columns,
 			@RequestParam(value = "find") String[] finds,Model model) {
@@ -104,7 +113,7 @@ public class AdminController {
 		model.addAttribute("vo",vo);
 		return "admin/memberUpdate";
 	}
-	@PostMapping("adminsave.do")
+	@PostMapping("adminupdatesave.do")
 	public String adminUpdateSave(String id, RedirectAttributes rda) {
 		mapper.updateAdmin(id);
 		rda.addFlashAttribute("message",id+"님을 관리자로 등록하였습니다.");
@@ -164,7 +173,7 @@ public class AdminController {
 		return "admin/noticeList";
 	}
 	
-	@RequestMapping("detail.do")
+	@RequestMapping("noticedetail.do")
 	public String noticeDetail(int idx,@RequestParam(required=false, defaultValue = "1") int pageNo, Model model) {
 		//관리자 페이지에서는 조회수 증가 x
 		Notice detail = notice_mapper.selectOne(idx);
@@ -175,7 +184,7 @@ public class AdminController {
 		
 		return "admin/noticeDetail";
 	}
-	@PostMapping("update.do")
+	@PostMapping("noticeupdate.do")
 	public String noticeUpdate(int idx,int pageNo,Model model) {
 		Notice detail = notice_mapper.selectOne(idx);
 		model.addAttribute("detail", detail);
@@ -183,7 +192,7 @@ public class AdminController {
 		
 		return "admin/noticeUpdate";
 	}
-	@PostMapping("updatesave.do")
+	@PostMapping("noticeupdatesave.do")
 	public String noticeUpdateSave(@RequestParam(required=false, defaultValue = "1") int pageNo,
 //		Notice notice, RedirectAttributes rda){
 		int idx, String title,String content, RedirectAttributes rda) {
@@ -193,15 +202,15 @@ public class AdminController {
 		rda.addAttribute("idx", idx);
 		rda.addAttribute("pageNo", pageNo);
 		rda.addFlashAttribute("message","글이 수정되었습니다.");
-		return "redirect:detail.do";
+		return "redirect:noticedetail.do";
 	}
-	@GetMapping("insert.do")
+	@GetMapping("noticeinsert.do")
 	public String noticeInsert() {
 		
 		return "admin/noticeInsert";
 	}
 	
-	@PostMapping("insert.do")
+	@PostMapping("noticeinsert.do")
 	public String noticeInsertSave(Notice vo, RedirectAttributes rda) {
 		notice_mapper.insertNotice(vo);
 		rda.addFlashAttribute("message", "공지사항이 등록되었습니다.");
@@ -210,7 +219,7 @@ public class AdminController {
 	}
 	
 	
-	@PostMapping("delete.do")
+	@PostMapping("noticedelete.do")
 	public String noticeDelete(int idx, int pageNo, RedirectAttributes rda) {
 		notice_mapper.deleteNotice(idx);
 		rda.addAttribute("pageNo", pageNo);
@@ -226,14 +235,15 @@ public class AdminController {
 		return "admin/performInsert";
 	}
 	@PostMapping("performinsert.do")
-	public String performInsertSave(Performance vo){
+	public String performInsertSave(Performance vo,RedirectAttributes rda){
 		logger.info("[My]"+vo);
 		try {
 			service.fileSave(vo);
+			rda.addFlashAttribute("message","공연이 등록되었습니다.");
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} 
-		return "redirect:main.do";
+		return "redirect:performinsert.do";
 	}
 
 //1:1 문의 목록
@@ -298,7 +308,18 @@ public class AdminController {
 		rda.addFlashAttribute("message", "답변이 등록되었습니다.");
 		return "redirect:questiondetail.do";
 	}
-	
-	
+//공연 스케줄 등록
+	@GetMapping("scheduleinsert.do")
+	public String scheduleInsert(Model model) {
+		List<Performance> perform = perform_mapper.selectScheduledPerform();
+		model.addAttribute("perform", perform);
+		return "admin/scheduleInsert";
+	}
+	@PostMapping("scheduleinsert.do")
+	public String scheduleInsertSave(Schedules vo,RedirectAttributes rda) {
+		schedule_mapper.insertSchedule(vo);
+		rda.addFlashAttribute("message","공연 스케줄이 등록되었습니다.");
+		return "redirect:scheduleinsert.do";
+	}
 	
 }

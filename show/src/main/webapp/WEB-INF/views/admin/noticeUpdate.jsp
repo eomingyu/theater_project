@@ -22,7 +22,7 @@
 	<h3>공지사항 수정</h3>
 	<hr>
 	<div style="margin:auto;">
-		<form action="updatesave.do" method="post">
+		<form action="noticeupdatesave.do" method="post">
 			<table class="notice" id="title">
 				<tr>
 					<th class="notice" width="20%">제목</th>
@@ -52,7 +52,7 @@
 			</div>
 		</form>
 			<div style="text-align:center;">
-				<form action="detail.do">
+				<form action="noticedetail.do">
 					<input name="idx" type="hidden" value="${detail.notice_idx}">
 					<button>취소</button>
 				</form>
