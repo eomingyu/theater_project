@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,12 +22,14 @@ import com.mycompany.idev.dto.PageDto;
 import com.mycompany.idev.dto.Performance;
 import com.mycompany.idev.dto.Question;
 import com.mycompany.idev.dto.Schedules;
+import com.mycompany.idev.dto.Theater;
 import com.mycompany.idev.mapper.AnswerMapper;
 import com.mycompany.idev.mapper.MemberMapper;
 import com.mycompany.idev.mapper.NoticeMapper;
 import com.mycompany.idev.mapper.PerformanceMapper;
 import com.mycompany.idev.mapper.QuestionMapper;
 import com.mycompany.idev.mapper.SchedulesMapper;
+import com.mycompany.idev.mapper.TheaterMapper;
 import com.mycompany.idev.service.AdminService;
 
 @Controller
@@ -53,6 +54,9 @@ public class AdminController {
 	
 	@Autowired
 	SchedulesMapper schedule_mapper;
+	
+	@Autowired
+	TheaterMapper theater_mapper;
 	
 	private final AdminService service;
 	
@@ -230,8 +234,9 @@ public class AdminController {
 
 //공연 등록
 	@GetMapping("performinsert.do")
-	public String performInsert() {
-		
+	public String performInsert(Model model) {
+		List<Theater> list = theater_mapper.selectAll();
+		model.addAttribute("list", list);
 		return "admin/performInsert";
 	}
 	@PostMapping("performinsert.do")

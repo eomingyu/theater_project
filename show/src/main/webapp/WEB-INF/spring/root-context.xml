@@ -31,6 +31,8 @@
 				<value>classpath:META-INF/mybatis/question.xml</value>
 				<value>classpath:META-INF/mybatis/answer.xml</value>
 				<value>classpath:META-INF/mybatis/schedules.xml</value>
+				<value>classpath:META-INF/mybatis/theater.xml</value>
+				<value>classpath:META-INF/mybatis/seat.xml</value>
 			</list>
 		</property>
 		<property name="configLocation" 

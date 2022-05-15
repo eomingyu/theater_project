@@ -22,6 +22,22 @@
 	},210);
 </script>
 <script src="https://kit.fontawesome.com/7ebf19920b.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+function validCheck(){
+	const reg = /([0-9]{4}-[0-9]{2}-[0-9]{2})/;
+	const frm = document.forms[0];
+	console.log(frm.date.value);
+	if(frm.performance.value=="none")
+		alert('공연을 선택해주세요.')
+	else if(!reg.test(frm.date.value)){
+		alert('공연일자를 선택해주세요.')
+	}
+	else if(frm.start_time.value=="none")
+		alert('공연시작시간을 선택해주세요.')
+	else
+		frm.submit();
+}
+</script>
 </head>
 <body>
 <!-- 메뉴바 include -->
@@ -37,14 +53,6 @@
 				<c:forEach var="vo" items="${perform}">
 					<option value="${vo.perform_idx}">${vo.perform_title}</option>
 				</c:forEach>
-			</select>
-		</div>
-		<div>
-			<label for="theater">극장 선택</label>
-			<select name="theater" id="theater">
-				<option value="none" selected disabled>----선택----</option>
-				<option value="프레또대극장">프레또대극장</option>
-				<option value="프레또소극장">프레또소극장</option>
 			</select>
 		</div>
 		<div>
@@ -94,7 +102,6 @@ function toDate(timestamp){				//timestamp => date 변환 함수 yyyy-MM-dd
 }
 document.querySelector("#performance").addEventListener('change',function(){
 	const frm = document.forms[0];
-		frm.date.value="0000-00-00";
     const perform_idx = frm.perform_idx.value;
     //if(perform_idx!=none){
 		const xhr = new XMLHttpRequest();
@@ -108,6 +115,7 @@ document.querySelector("#performance").addEventListener('change',function(){
 	            console.log(info);
 	            if (info!=null) {
 	            	document.querySelector('#info').innerHTML='공연 제목 : '+info.perform_title
+	            		+'<br>'+'극장 : '+info.theater_name
 	            		+'<br>'+'공연 일자 : '+toDate(info.start_date)+' ~ '+toDate(info.end_date);
 	            	document.getElementById("date").min=toDate(info.start_date)
 	            	document.getElementById("date").max=toDate(info.end_date)
@@ -120,15 +128,7 @@ document.querySelector("#performance").addEventListener('change',function(){
 	    };
    // }
 });
-function validCheck(){
-	const frm = document.forms[0];
-	console.log(frm.date.value);
-	if(frm.date.value==null)
-		alert('공연 날짜를 선택해주세요')
-else
-	frm.submit();
-	
-}
+
 		
 </script>
 </body>

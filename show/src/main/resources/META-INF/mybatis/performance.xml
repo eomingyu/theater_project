@@ -4,22 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.idev.mapper.PerformanceMapper">
 	<insert id="insertPerform" parameterType="Performance">
-		INSERT INTO performance(perform_idx, perform_title, poster,
+		INSERT INTO performance(perform_idx,theater_idx, perform_title, poster,
 		 		showtime, grade, detail, start_date, end_date)
-		VALUES(perform_idx_seq.nextval, #{perform_title}, #{poster},
+		VALUES(perform_idx_seq.nextval,#{theater_idx}, #{perform_title}, #{poster},
 		 		#{showtime}, #{grade}, #{detail}, #{start_date}, #{end_date})
 	</insert>
-	
+	<!-- 예정 공연 조회-->
 	<select id="selectScheduledPerform" resultType="Performance">
 	<![CDATA[
-		SELECT * FROM performance
-		WHERE start_date > sysdate+1
+		SELECT * FROM performance p, theater t
+		WHERE p.theater_idx=t.theater_idx AND p.end_date > sysdate+1
+		ORDER BY p.start_date 
+	]]>
+	</select>
+	<!-- 현재 상영중,예정 공연 -->
+		<select id="selectTicketPerform" resultType="Performance">
+	<![CDATA[
+		SELECT * FROM performance p, theater t
+		WHERE p.theater_idx=t.theater_idx AND end_date > sysdate
 		ORDER BY start_date 
 	]]>
 	</select>
 	<select id="getOne" resultType="Performance" parameterType="int">
-		SELECT * FROM performance
-		WHERE perform_idx=#{perform_idx}
+		SELECT * FROM performance p, theater t
+		WHERE p.theater_idx=t.theater_idx AND perform_idx=#{perform_idx}
 	</select>	
 </mapper>
 

@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Performance {
 	private int perform_idx;
+	private int theater_idx;
 	private String perform_title;
 	private String poster;
 	private int showtime;
@@ -23,4 +24,9 @@ public class Performance {
 	
 	//MultipartFile 은 form 요소의 file 을 전달받아 참조합니다.//db저장 X
 	private MultipartFile pics;
+	
+	//조인
+	private String theater_name;
+	private String theater_fee;
+	private int seat_number;
 }

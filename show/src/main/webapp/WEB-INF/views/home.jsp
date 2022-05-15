@@ -12,6 +12,9 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+<a href="ticket/list.do">예매 페이지</a>
 <a href="admin/main.do">관리자 페이지</a>
+
 </body>
 </html>

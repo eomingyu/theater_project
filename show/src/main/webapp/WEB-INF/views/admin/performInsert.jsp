@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,7 @@
 	function validCheck(){
 	var form=document.forms[0];
 	var title = form.perform_title;
+	var theater_idx = form.theater_idx;
 	var showtime = form.showtime;
 	var grade = form.grade;
 	var start_date = form.start_date;
@@ -40,6 +42,10 @@
 		if(title.value==""){
 			alert('공연 제목을 입력해주세요')
 			title.focus();
+		}
+		else if(theater_idx.value=="none"){
+			alert('극장을 선택해주세요')
+			theater_idx.focus();
 		}
 		else if(showtime.value==""){
 			alert('관람 시간을 입력해주세요')
@@ -93,6 +99,17 @@
 					<th class="notice" width="20%">공연 제목</th>
 					<td width="80%">
 						<input type="text" name="perform_title">
+					</td>
+				</tr>
+				<tr>
+					<th class="notice" width="20%">극장 선택</th>
+					<td width="80%">
+						<select name="theater_idx" id="theater_idx">
+							<option value="none" selected disabled>----선택----</option>
+							<c:forEach var="vo" items="${list}">
+								<option value="${vo.theater_idx}">${vo.theater_name}</option>
+							</c:forEach>
+						</select>
 					</td>
 				</tr>
 				<tr>

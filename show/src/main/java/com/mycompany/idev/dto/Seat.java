@@ -1,7 +1,5 @@
 package com.mycompany.idev.dto;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Schedules {
-	private int schedule_idx;
-	private int perform_idx;
-	private Date perform_date;
-	private String start_time;
+public class Seat {
+	private int seat_idx;
+	private int theater_idx;
+	private String seat_grade;
+	private int seat_price;
+	private String seat_row;
+	private int num;
 }
