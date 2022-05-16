@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.idev.mapper.SeatMapper">
 
-<!-- 잔여석 조회 -->
+<!-- 잔여석 수 조회 -->
 	<select id="leftSeat" resultType="int" parameterType="Map">
 		SELECT count(*) 
 		FROM seat 
@@ -12,4 +12,21 @@
 			AND seat_idx NOT IN(SELECT seat_idx FROM ticket
 				WHERE schedule_idx =#{schedule_idx} AND cancel =0)
 	</select>	
+	<!-- 극장별 좌석 조회 -->
+	<select id="getAll" parameterType="int" resultType="Seat">
+		SELECT * FROM seat
+		WHERE theater_idx=#{theater_idx}
+	</select>	
+<!-- 이미 예매된 좌석 번호 조회-->
+	<select id="reservedSeat" resultType="Seat" parameterType="Map">
+		SELECT seat_idx
+		FROM seat 
+		WHERE theater_idx =#{theater_idx}
+			AND seat_idx IN(SELECT seat_idx FROM ticket
+				WHERE schedule_idx =#{schedule_idx} AND cancel =0)
+	</select>	
+	<select id="getOne" resultType="Seat" parameterType="int">
+		SELECT * FROM seat 
+		WHERE seat_idx=#{seat_idx}
+	</select>
 </mapper>

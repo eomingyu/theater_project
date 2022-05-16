@@ -1,6 +1,7 @@
 package com.mycompany.idev.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.idev.dto.Schedules;
+import com.mycompany.idev.dto.Seat;
 import com.mycompany.idev.mapper.SchedulesMapper;
 import com.mycompany.idev.mapper.SeatMapper;
 
@@ -50,12 +52,16 @@ public class TicketRestController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value="/asyncseat/{theater_idx}-{schedule_idx}",method=RequestMethod.GET
+	@RequestMapping(value="/asyncseat/{checkeditems}",method=RequestMethod.GET
 	,produces = "application/json;charset=utf-8")
-	public String leftSeat(@PathVariable int theater_idx, @PathVariable int schedule_idx) {
-		int seat = seat_mapper.leftSeat(theater_idx,schedule_idx);
+	public String leftSeat(@PathVariable int[] checkeditems) {
+		List<Seat> seats= new ArrayList<>();
+		for(int i=0;i<checkeditems.length;i++) {
+			Seat vo= seat_mapper.getOne(checkeditems[i]);
+			seats.add(vo);
+		}
 		Map<String,Object> map = new HashMap<>();
-		map.put("seat",seat);
+		map.put("seats",seats);
 		ObjectMapper objmapper = new ObjectMapper();
 		String json_result=null;
 		try {

@@ -21,7 +21,7 @@
 		<select id="selectTicketPerform" resultType="Performance">
 	<![CDATA[
 		SELECT * FROM performance p, theater t
-		WHERE p.theater_idx=t.theater_idx AND end_date > sysdate
+		WHERE p.theater_idx=t.theater_idx AND end_date > sysdate-1
 		ORDER BY start_date 
 	]]>
 	</select>

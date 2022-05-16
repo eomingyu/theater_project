@@ -8,28 +8,139 @@
 <head>
 <meta charset="UTF-8">
 <title>날짜/시간 선택</title>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=IBM+Plex+Sans+KR:wght@300&display=swap');
+*{
+	font-family: 'Hahmlet', serif;
+	font-family: 'IBM Plex Sans KR', sans-serif;	
+}
+ul{
+	list-style:none;
+	padding-left:1px;]
+}
+.poster{
+	margin:20px;
+}
+
+.clearp{
+	display:flex;
+	justify-content:center;
+}
+.clearp2{
+	display:flex;
+	justify-content:center;
+	margin-bottom: 10px;
+}
+.perform_info{
+	margin:20px;
+	align-items:center;
+	width:380px;
+}
+
+.clearp2>div{
+	width:210px;
+	margin:0;
+	padding:0;
+	padding-top:5px;
+	padding-bottom:5px;
+	text-align: center;
+}
+.clearp2> .choice{
+	background-color: #444;
+	color: #fff;
+}
+.clearp2> .choice2{
+	border-left:3px solid #333; 
+	border-right:3px solid #333;
+	background-color: #444;
+	color: #fff; 
+}
+
+.clearp2>.top{
+	background-color: #3498db;
+	color: white;
+	font-weight: bold;
+}
+</style>
+<script type="text/javascript">
+function validCheck(){
+	var form=document.forms[0];
+	var pdate = form.perform_date;
+	var stime = form.start_time;
+
+		if(pdate.value==""){
+			alert('날짜를 선택해주세요')
+		}
+		else if(stime.value==""){
+			alert('시간을 선택해주세요')
+		}
+		else
+			form.submit();
+	}
+</script>
 </head>
 <body>
-	<form action="">
+<div class="clearp2">
+	<div class="choice top">1. 날짜/시간 선택</div>
+	<div class="choice2">2. 좌석 선택</div>
+	<div class="choice">3. 결제</div>
+</div>
+<div class="clearp">
+	<div class="poster">
+	<img src="/upload/${perform.poster}" width="175px" height="250px" style="object-fit:contain">
+	</div>
+	<div class="perform_info">
+		<h3>${perform.perform_title}</h3>
+		<hr>
+		<ul>
+			<li><span>공연 일정 : </span>
+				<fmt:formatDate value="${perform.start_date}" pattern="yyyy년 MM월 dd일"/> ~ 
+				<fmt:formatDate value="${perform.end_date}" pattern="yyyy년 MM월 dd일"/>
+			</li>
+			<li><span>공연 장소 : </span>${perform.theater_name}</li>
+			<li><span>입 장 료  : </span>${perform.theater_fee}</li>
+			<li><span>관람 등급 : </span>${perform.grade} 관람가</li>
+			<li><span></span></li>
+			<li><span></span></li>
+		</ul>
+	</div>
+</div>
+
+<div class="clearp2">
+	<div class="choice">날짜 선택</div>
+	<div class="choice2">시간 선택</div>
+	<div class="choice">다음 단계</div>
+</div>
+<form action="choiceSeat.do" method="post">
+	<div class="clearp2">
+
+		<div>
  		<c:forEach var="vo" items="${list}">
  			<div id="schedule">
-			<label for="${vo.perform_date}">${vo.perform_date}</label>
-			<input type="radio" name="perform_date" id="${vo.perform_date}" value="${vo.perform_date}">
+			<label><span class="pdate"></span>
+			<input type="radio" name="perform_date" value="${vo.perform_date}"></label>
  			</div>
 		</c:forEach> 
-		<input type="hidden" name="perform_idx" value="${idx}">
-		<input type="hidden" name="theater_idx" value="${tidx}">
+		</div>
+		<input type="hidden" name="perform_idx" value="${perform.perform_idx}">
+		<input type="hidden" name="theater_idx" value="${perform.theater_idx}">
 		<div class="selecttime">
-		
+			<div style="color:gray;">날짜를 선택해주세요.</div>
 		</div>
-		<div class="selectseat">
-		
+		<div>
+		<button type="button" onclick="validCheck();">좌석선택</button>
 		</div>
-
-	</form>
+	</div>
+</form>
 <script type="text/javascript">
-console.log('${list}')
-
+var ex=document.getElementsByName("perform_date");
+var pdate=document.getElementsByClassName("pdate");
+console.log(ex);
+console.log(pdate);
+for(var i=0; i<ex.length;i++){
+	pdate[i].innerText=toDate2(ex[i].value)
+}
+var temp=0;
 function toDate(timestamp){				//timestamp => date 변환 함수 yyyy-MM-dd
 	var date= new Date(timestamp);
 	var year = date.getFullYear()
@@ -56,13 +167,10 @@ function toDate2(timestamp){				//timestamp => date 변환 함수 MM월 dd일 (�
 var radios=document.querySelectorAll('input[name="perform_date"]')
 if(radios){
 radios.forEach((radio) => {
-	
-
-radio.addEventListener('change',function(event){
+	radio.addEventListener('change',function(event){
 	var current = event.currentTarget
 	if (current.checked){
 		
-	
 	const frm = document.forms[0];
     const perform_date = frm.perform_date.value;
     const perform_idx = frm.perform_idx.value;
@@ -75,6 +183,9 @@ radio.addEventListener('change',function(event){
 	            console.log(xhr.response);
 	            const info = JSON.parse(xhr.response).info;
 	            console.log(info);
+	            console.log(info.length);
+	            console.log(info[0]);
+	            console.log(info[2]);
 	            console.log(JSON.parse(xhr.response));
 	            document.querySelector('.selecttime').innerHTML=''
 	             info.forEach(function(infoItem){
@@ -88,62 +199,24 @@ radio.addEventListener('change',function(event){
 					 input.setAttribute('name', 'start_time');
 					 input.setAttribute('id', start_time);
 	     			 input.setAttribute('value', start_time);
-	     			 var input2 = document.createElement('input');
-	            	 input2.setAttribute('type', 'hidden');
-					 input2.setAttribute('name', 'schedule_idx');
-	     			 input2.setAttribute('value', schedule_idx);
-	     				 
+ 
 	     			document.querySelector('.selecttime').appendChild(label);
 	     			document.querySelector('.selecttime').appendChild(input);
-	     			document.querySelector('.selecttime').appendChild(input2);
 
 	            		
 	            });      
 	        }else {
 	            console.error('Error',xhr.status,xhr.statusText);
 	        }
-	    };
+	};   
+	    
 	}
 });
 })
 }
 
 
-//공연 시간 선택시 잔여석 출력
-var radios=document.querySelectorAll('input[name="start_time"]')
-if(radios){
-radios.forEach((radio) => {
-	
 
-radio.addEventListener('change',function(event){
-	var current = event.currentTarget
-	if (current.checked){
-		
-	
-	const frm = document.forms[0];
-    const perform_date = frm.perform_date.value;
-    const perform_idx = frm.perform_idx.value;
-    const theater_idx = frm.theater_idx.value;
-    const schedule_idx = frm.schedule_idx.value;
-		const xhr = new XMLHttpRequest();
-	
-	    xhr.open('GET','${pageContext.request.contextPath}/asyncseat/'+theater_idx+"-"+schedule_idx);
-	    xhr.send();
-	    xhr.onload = function() {
-	        if(xhr.status ==200) {
-	            console.log(xhr.response);
-	            const seat = JSON.parse(xhr.response).seat;
-	            console.log(seat);
-	            document.querySelector('.selectseat').innerHTML=seat+'석'
-	            
-	        }else {
-	            console.error('Error',xhr.status,xhr.statusText);
-	        }
-	    };
-	}
-});
-})
-}
 
 
 </script>

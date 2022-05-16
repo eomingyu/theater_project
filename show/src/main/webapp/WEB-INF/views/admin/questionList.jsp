@@ -39,7 +39,7 @@
 				</span>
 				<span id="status">
 					<select name="find" id="astatus">
-						<option value="답변 대기">답변 대기</option>
+						<option value="진행중">답변 대기</option>
 						<option value="답변 완료">답변 완료</option>
 					</select>
 				</span>
@@ -64,7 +64,7 @@
 		 			<fmt:formatDate value="${vo.question_date}" pattern="yyyy-MM-dd"/>  <!-- 출력패턴 -->
 		 		</td>
 		 		<td>
-			 		<c:if test="${vo.status=='답변 대기'}">
+			 		<c:if test="${vo.status=='진행중'}">
 			 			<span style="color:red;font-weight:bolder;">답변 대기</span>
 			 		</c:if>
 			 		<c:if test="${vo.status=='답변 완료'}">

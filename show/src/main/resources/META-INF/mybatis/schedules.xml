@@ -18,5 +18,9 @@
 		WHERE perform_date=#{perform_date} AND perform_idx=#{perform_idx}
 		ORDER BY start_time
 	</select>
+		<select id="getIdx" parameterType="Map" resultType="int">
+		SELECT schedule_idx FROM schedules
+		WHERE perform_idx=#{perform_idx} AND perform_date=#{perform_date} AND start_time=#{start_time}
+	</select>
 	
 </mapper>
