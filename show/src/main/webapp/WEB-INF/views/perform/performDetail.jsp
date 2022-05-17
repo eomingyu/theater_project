@@ -7,13 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공연 목록</title>
+<title>Insert title here</title>
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=IBM+Plex+Sans+KR:wght@300&display=swap');
-*{
-	font-family: 'Hahmlet', serif;
-	font-family: 'IBM Plex Sans KR', sans-serif;	
-}
 ul{
 	list-style:none;
 	padding-left:1px;]
@@ -44,31 +39,30 @@ ul{
 <body>
 <div style="margin:auto;">
 	<div class="clear2">
-		<c:forEach var="vo" items="${list}">
 		<div class="clearp">
 				<div class="poster">
-				<img src="/upload/${vo.poster}" width="175px" height="250px" style="object-fit:contain">
+				<img src="/upload/${detail.poster}" width="175px" height="250px" style="object-fit:contain">
 				</div>
 				<div class="perform_info">
-					<h3>${vo.perform_title}</h3>
+					<h3>${detail.perform_title}</h3>
 					<hr>
 					<ul>
 						<li><span>공연 일정 : </span>
-							<fmt:formatDate value="${vo.start_date}" pattern="yyyy년 MM월 dd일"/> ~ 
-							<fmt:formatDate value="${vo.end_date}" pattern="yyyy년 MM월 dd일"/>
+							<fmt:formatDate value="${detail.start_date}" pattern="yyyy년 MM월 dd일"/> ~ 
+							<fmt:formatDate value="${detail.end_date}" pattern="yyyy년 MM월 dd일"/>
 						</li>
-						<li><span>공연 장소 : </span>${vo.theater_name}</li>
-						<li><span>입 장 료  : </span>${vo.theater_fee}</li>
-						<li><span>관람 등급 : </span>${vo.grade} 관람가</li>
+						<li><span>공연 장소 : </span>${detail.theater_name}</li>
+						<li><span>입 장 료  : </span>${detail.theater_fee}</li>
+						<li><span>관람 등급 : </span>${detail.grade} 관람가</li>
 						<li><span></span></li>
 						<li><span></span></li>
 					</ul>
 				</div>
-				<div class="perform_button">
-					<button type="button" onclick="location.href='choice.do?idx=${vo.perform_idx}&tidx=${vo.theater_idx}'">예매하기</button>
-				</div>
 		</div>
-		</c:forEach>
+		<div class="clearp">
+			<div id="detail">${detail.detail}</div>
+		</div>
+		<div class="clearp"><button type="button" onclick="history.back();">뒤로가기</button></div>
 	</div>
 </div>
 </body>

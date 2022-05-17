@@ -73,6 +73,5 @@ public class TicketRestController {
 		
 		return json_result;
 	}	
-	
-	
+
 }

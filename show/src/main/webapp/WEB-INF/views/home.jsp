@@ -13,6 +13,7 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
+<a href="perform/nowlist.do">공연 페이지</a>
 <a href="ticket/list.do">예매 페이지</a>
 <a href="admin/main.do">관리자 페이지</a>
 

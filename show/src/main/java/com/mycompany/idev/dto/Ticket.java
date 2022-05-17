@@ -12,7 +12,7 @@ public class Ticket {
 	private int ticket_no;
 	private String id;
 	private int schedule_idx;
-	private String seat;
+	private int seat_idx;
 	private Timestamp ticket_date;
 	private int total_price;
 	private int ticket_number;

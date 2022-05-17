@@ -22,5 +22,9 @@
 		SELECT schedule_idx FROM schedules
 		WHERE perform_idx=#{perform_idx} AND perform_date=#{perform_date} AND start_time=#{start_time}
 	</select>
+	<select id="getInfo" parameterType="int" resultType="Schedules">
+		SELECT * FROM schedules
+		WHERE schedule_idx=#{schedule_idx}
+	</select>
 	
 </mapper>

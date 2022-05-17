@@ -8,6 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>좌석 선택</title>
+<!-- 제이쿼리 -->
+<script src="http://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+<!-- 아임포트 -->
+<script src ="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" type="text/javascript"></script>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=IBM+Plex+Sans+KR:wght@300&display=swap');
 *{
@@ -146,6 +150,7 @@
 	height:250px;
 }
 #cho2{
+	margin-left:50px;
 	padding:38px;
 	padding-top:0px;
 }
@@ -156,9 +161,14 @@ input:disabled +label{
   background: #444;
   border:2px solid #444;
 }
+#t1 > input:disabled +label{
+  background: #444;
+  border:2px solid #444;
+}
 #totalprice{
 	width : 100px;
 	padding-right:20px;
+	margin-right:30px;
 }
 .rows > div{
 	display: inline-block;
@@ -218,13 +228,13 @@ input:disabled +label{
 <body>
 <div class="clearp2">
 	<div class="choice">1. 날짜/시간 선택</div>
-	<div class="choice top">2. 좌석 선택</div>
+	<div class="choice2 top">2. 좌석 선택</div>
 	<div class="choice">3. 결제</div>
 </div>
 <div class="clearp2">
 	<span id="stage">STAGE</span>
 </div>
-<form action="">
+<form action="ticketpayment.do" method="post">
 <c:if test="${theater_idx==1}">
 <div class="clearp3">
 	<div class="rows">
@@ -237,7 +247,7 @@ input:disabled +label{
 		<div>G</div><br>
 		<div>H</div><br>
 	</div>
-	<div class="theater1">
+	<div class="theater1" id="t1">
 		<c:forEach var="vo" items="${allseat}">
 			<input type="checkbox" name="choiceseat" onchange="checkBox(this)" id="${vo.seat_idx}" value="${vo.seat_idx}">
 			<label for="${vo.seat_idx}"></label>
@@ -267,21 +277,29 @@ input:disabled +label{
 </c:if>	
 
 <input type="hidden" name="checkResult" id="checkResult">
+<input type="hidden" name="schedule_idx" value="${schedule_idx}">
+<input type="hidden" name="ticketno" id="ticketno">
+<input type="hidden" name="payprice" id="payprice">
 <div class="clearp3">
 	<div id="cho">선택 좌석</div>
 	<div id="seats"></div>
 	<div id="price"></div>
 	<div id="classes">
+	<c:if test="${theater_idx==1}">
 		<div><div id="rclass"></div><span>R석  : 50,000원</span></div> <br>
 		<div><div id="sclass"></div><span>S석  : 40,000원</span></div><br>
 		<div><div id="aclass"></div><span>A석  : 30,000원</span></div><br>
-		<div><div id="nclass"></div><span>N석  : 30,000원</span></div><br>
+	</c:if>
+	<c:if test="${theater_idx==2}">
+		<div><div id="nclass"></div><span>일반석  : 30,000원</span></div><br>
+	</c:if>
 	</div>
 </div>
 <div class="clearp3">
+	<div><button type="button" onclick="history.back();">이전단계</button></div>
 	<div id="cho2">결제 금액</div>
 	<div id="totalprice"></div>
-	<div><button>결제하기</button></div>
+	<div><button>다음단계</button></div>
 </div>
 </form>
 <c:forEach var="vo" items="${reservedseat}">
@@ -318,6 +336,7 @@ function checkBox(checked){
 var checkeditems=[result.value];
 console.log(checkeditems);
 if(result.value!=''){
+
 const xhr = new XMLHttpRequest();
 var text='';
 var price='';
@@ -340,7 +359,7 @@ xhr.onload = function() {
 				document.getElementById('seats').innerHTML = text+"<br>";
 				document.getElementById('price').innerHTML = price;
 				document.getElementById('totalprice').innerHTML = total_price+" 원";
-				
+				document.getElementById('payprice').value = total_price;
     }else {
         console.error('Error',xhr.status,xhr.statusText);
     }
@@ -349,54 +368,24 @@ xhr.onload = function() {
 	 document.getElementById('seats').innerHTML="<br>"
 	 document.getElementById('price').innerHTML="<br>"
 	 document.getElementById('totalprice').innerHTML="<br>"
-}
-result.value = checkeditems
-}
-
-
-/* var checks=document.getElementsByName('choiceseat')
-var checkeditems = [];
-if(checks){
-checks.forEach((check) => {
-	check.addEventListener('change',function(event){
- 	var current = event.currentTarget
-	if (current.checked){ 
-		
-	const frm = document.forms[0];
-	for(var i=0; i<checks.length;i++){
-		if(checks[i].checked){
-			if(!checkeditems.includes(checks[i].value))
-			checkeditems.push(checks[i].value);
-		}
-		else
-			if(checkeditems.includes(checks[i].value)){
-				const index = checkeditems.indexOf(checks[i].value);
-				if (index > -1) {
-				checkeditems.splice(index, 1);
-				}
-			}
 	}
-	console.log(checkeditems);
-		const xhr = new XMLHttpRequest();
-		
-	    xhr.open('GET','${pageContext.request.contextPath}/asyncseat/'+checkeditems);
-	    xhr.send();
-	    xhr.onload = function() {
-	        if(xhr.status ==200) {
-	            console.log(xhr.response);
-	            const seats = JSON.parse(xhr.response);
-				console.log("2 "+seats)
-
-	                  
-	        }else {
-	            console.error('Error',xhr.status,xhr.statusText);
-	        }
-	};   
-	    
-	}
-});
-})
-} */
+}
+//예매번호 설정
+console.log(new Date().getTime())
+	var date= new Date();
+	var millis = date.getTime().toString().substring(5,10);
+	var year = date.getFullYear().toString().substring(3,4);
+	var month = date.getMonth()+1
+	var date2 =  date.getDate()
+	if(month<10)
+		month= "0"+month;
+	if(date2<10)
+		date2="0"+date2;
+	var fulldate = year+month+date2+millis
+	var ticketno = parseInt(fulldate);
+	document.forms[0].ticketno.value=fulldate
+	console.log(document.forms[0].ticketno.value)	
 </script>
+
 </body>
 </html>

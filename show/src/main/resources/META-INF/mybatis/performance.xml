@@ -25,6 +25,30 @@
 		ORDER BY start_date 
 	]]>
 	</select>
+	<!-- 지난 공연 조회 -->
+	<select id="selectLastPerform" resultType="Performance">
+	<![CDATA[
+		SELECT * FROM performance p, theater t
+		WHERE p.theater_idx=t.theater_idx AND end_date < sysdate-1
+		ORDER BY start_date 
+	]]>
+	</select>
+	<!-- 현재 상영중,예정 공연 detail -->
+		<select id="selectNowDetail" resultType="Performance" parameterType="int">
+	<![CDATA[
+		SELECT * FROM performance p, theater t
+		WHERE p.theater_idx=t.theater_idx AND end_date > sysdate-1 AND p.perform_idx=#{perform_idx}
+		ORDER BY start_date 
+	]]>
+	</select>
+	<!-- 지난 공연 조회 detail-->
+	<select id="selectLastDetail" resultType="Performance" parameterType="int">
+	<![CDATA[
+		SELECT * FROM performance p, theater t
+		WHERE p.theater_idx=t.theater_idx AND end_date < sysdate-1 AND p.perform_idx=#{perform_idx}
+		ORDER BY start_date 
+	]]>
+	</select>
 	<select id="getOne" resultType="Performance" parameterType="int">
 		SELECT * FROM performance p, theater t
 		WHERE p.theater_idx=t.theater_idx AND perform_idx=#{perform_idx}
