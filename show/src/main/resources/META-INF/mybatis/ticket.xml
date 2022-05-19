@@ -9,7 +9,12 @@
 		VALUES(ticket_idx_seq.nextval, #{ticket_no}, #{id}, #{schedule_idx}, #{seat_idx})
 	</insert>
 	<select id="getTicket" parameterType="int" resultType="Ticket">
-		SELECT * FROM
+		SELECT * FROM ticket
 		WHERE ticket_no=#{ticket_no}
 	</select>
+	<select id="getIdTicket" parameterType="String" resultType="Ticket">
+		SELECT DISTINCT ticket_no FROM ticket
+		WHERE id=#{id}
+	</select>
+	
 </mapper>

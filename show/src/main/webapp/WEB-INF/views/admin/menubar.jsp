@@ -10,8 +10,14 @@
 			<button id="logo" type="button" onclick="location.href='main.do'">FREDDO</button>
 			<button class="accordion" type="button" onclick="location.href='main.do'">
 			<span class="icon"><i class="fa-solid fa-house"></i></span>관리자 메인</button>
-			<button class="accordion" type="button" onclick="location.href='memberlist.do'">
-			<span class="icon"><i class="fa-solid fa-address-book"></i></span>회원 목록</button>
+			<button class="accordion">
+				<span class="icon"><i class="fa-solid fa-address-book"></i></span>회원 목록</button>
+				<div class="panel">
+					<div><a href="memberlist.do"><span class="icon"><i class="fa-solid fa-angle-right"></i></span>
+						회원 목록</a></div>
+					<div><a href="memberapprove.do"><span class="icon"><i class="fa-solid fa-angle-right"></i></span>
+						관리자 가입 승인</a></div>
+				</div>
 			<button class="accordion">
 				<span class="icon"><i class="fa-solid fa-masks-theater"></i></span>공연</button>
 				<div class="panel">
@@ -53,8 +59,10 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 var href=window.location.pathname;
-if(href.indexOf('member')!=-1 || href.indexOf('adminupdate')!=-1)
+if(href.indexOf('member')!=-1 || href.indexOf('adminupdate')!=-1){
 	acc[1].classList.add("active");
+	acc[1].nextElementSibling.style.maxHeight = acc[1].nextElementSibling.scrollHeight + "px";
+}
 else if(href.indexOf('perform')!=-1 || href.indexOf('schedule')!=-1){
 	acc[2].classList.add("active");
 	acc[2].nextElementSibling.style.maxHeight = acc[2].nextElementSibling.scrollHeight + "px";

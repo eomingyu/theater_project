@@ -19,4 +19,6 @@ public interface MemberMapper {
 								@Param("startNo") int startNo, @Param("endNo") int endNo);
 //	List<Members> searchPageList(Map<String,String> map,Map<String,Integer> map2);
 	int getSearchCount(Map<String,String> map);
+	List<Member> getAppList(Map<String,Integer> map);
+	int getAppCount();
 }

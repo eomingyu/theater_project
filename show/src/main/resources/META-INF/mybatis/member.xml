@@ -67,6 +67,16 @@
 			where authority=#{find}
 		</if>
 	</select>
-	
-	
+	<!-- 관리자 신청한 회원 조회 -->
+	<select id="getAppList" parameterType="Map" resultType="Member">
+		SELECT * FROM (
+			SELECT rownum AS R, T.* FROM 
+				(SELECT * FROM members WHERE authority=3 ORDER BY reg_date DESC) T )
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+
+	<!-- 관리자 신청 회원 수 -->
+	<select id="getAppCount" resultType="int">
+		SELECT count(*) FROM members WHERE authority=3
+	</select>
 </mapper>

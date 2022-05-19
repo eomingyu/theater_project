@@ -326,5 +326,35 @@ public class AdminController {
 		rda.addFlashAttribute("message","공연 스케줄이 등록되었습니다.");
 		return "redirect:scheduleinsert.do";
 	}
+//관리자 승인
+	@GetMapping("memberapprove.do")
+	public String memberApprove(@RequestParam(required=false, defaultValue = "1")
+	int pageNo,Model model) {
+		PageDto page = new PageDto(pageNo,10,mapper.getAppCount());
+		
+		Map<String,Integer> map = new HashMap<>();
+		map.put("startNo", page.getStartNo());
+		map.put("endNo", page.getEndNo());
+		List<Member> list = mapper.getAppList(map);
+		
+		model.addAttribute("page",page);
+		model.addAttribute("list",list);
+		
+		return "admin/memberAppList";
+	}
 	
+	@PostMapping("memberok.do")
+	public String memberOk(String id,RedirectAttributes rda) {
+		mapper.updateAdmin(id);
+		rda.addFlashAttribute("message",id+"님의 관리자 가입을 승인하였습니다.");
+		
+		return "redirect:memberapprove.do";
+	}
+	@PostMapping("memberno.do")
+	public String memberNo(String id,RedirectAttributes rda) {
+		mapper.deleteMember(id);
+		rda.addFlashAttribute("message",id+"님의 관리자 가입을 거절하였습니다.");
+		
+		return "redirect:memberapprove.do";
+	}
 }

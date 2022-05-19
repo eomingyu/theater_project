@@ -83,6 +83,7 @@
 					<!-- 사용자 선택하는 텍스트와 db테이블에 저장된 값이 다릅니다. -->
 						<option value="1">일반 회원</option>
 						<option value="0">관리자</option>
+						<option value="3">승인 대기</option>
 					</select>
 				</span>
 				<button>검색</button>
@@ -114,6 +115,9 @@
 		 		</c:if>
 		 		<c:if test="${vo.authority==0}">
 		 			<span style="color:red;font-weight:bolder;">관리자</span>
+		 		</c:if>
+		 		<c:if test="${vo.authority==3}">
+		 			<span style="color:blue;">승인 대기</span>
 		 		</c:if>
 		 		<%-- <c:choose>
 		 			<c:when test="${vo.authority==1}">
