@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 목록</title>
+<title>관리자 가입 승인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/freeboard.css">
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=IBM+Plex+Sans+KR:wght@300&display=swap');
@@ -63,19 +63,12 @@
 <script src="https://kit.fontawesome.com/7ebf19920b.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<body>
 <!-- 메뉴바 include -->
-<!-- 메뉴바 include -->
-<%@ include file="../includes/banner.jsp" %>
-		<!-- 컨테이너시작 -->
-	<section id="main" class="wrapper">
-		<header>
-			<h2>FREDDO</h2>
-				<p class="location">
-				MEMBER LIST <span class="path">/</span> 가입 승인
-				</p>
-		</header>
-		<div class="inner">
-		<!-- 본문 -->
+<%@include file="menubar.jsp" %>
+<section>
+	<h3>관리자 가입 승인</h3>
+	<hr>
 	<div style="margin:auto;">
 		<table>
 			<tr>
@@ -96,13 +89,13 @@
 		 		<fmt:formatDate value="${vo.reg_date }" pattern="yyyy-MM-dd"/>  <!-- 출력패턴 -->
 		 		</td>
 		 		<td>
-	<div class="dropdown">
-	  <button class="dropbtn">•••</button>
-	  <div class="dropdown-content">
-	    <a href="javascript:updateAdmin('${vo.id}')">가입 승인</a>
-	    <a href="javascript:deleteMember('${vo.id}')">가입 거절</a>
-	  </div>
-	</div>
+		<div class="dropdown">
+		  <button class="dropbtn">•••</button>
+		  <div class="dropdown-content">
+		    <a href="javascript:updateAdmin('${vo.id}')">가입 승인</a>
+		    <a href="javascript:deleteMember('${vo.id}')">가입 거절</a>
+		  </div>
+		</div>
 				</td>
 		 	</tr>
 	 	 	</c:forEach>
@@ -138,9 +131,7 @@
 	<form action="memberapprove.do">
 		<input name="pageNo" type="hidden">
 	</form>
-	</div>
 </section>
-<%@ include file="../includes/footer.jsp" %>
 <script type="text/javascript">
 	function goPage(no){
 		const frm = document.forms[0];
