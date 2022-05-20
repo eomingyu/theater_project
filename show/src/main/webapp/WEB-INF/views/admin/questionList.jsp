@@ -10,9 +10,10 @@
 <title>1:1 문의 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/freeboard.css">
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=IBM+Plex+Sans+KR:wght@300&display=swap');
 *{
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'Hahmlet', serif;
+	font-family: 'IBM Plex Sans KR', sans-serif;	
 }
 
 </style>
@@ -42,8 +43,8 @@
 						<option value="답변 완료">답변 완료</option>
 					</select>
 				</span>
-				<button>검색</button>
-				<button type="button" onclick="location.href='questionlist.do'">전체보기</button>
+				<button class="adbutton">검색</button>
+				<button type="button" class="adbutton" onclick="location.href='questionlist.do'">전체보기</button>
 			</form>
 		</div>
 		<table>

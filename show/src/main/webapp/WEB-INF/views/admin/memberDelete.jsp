@@ -66,8 +66,8 @@
 		<form action="memberdeletesave.do" method="post">
 			<input type="hidden" name="id" value="${vo.id}">
 			<div style="text-align:center">
-				<button type="button" onclick="deleteOk('${vo.id}');">삭제</button>
-				<button type="button" onclick="history.back();">취소</button>
+				<button type="button" class="adbutton" onclick="deleteOk('${vo.id}');">삭제</button>
+				<button type="button" class="adbutton" onclick="history.back();">취소</button>
 			</div>
 		</form>
 	</div>

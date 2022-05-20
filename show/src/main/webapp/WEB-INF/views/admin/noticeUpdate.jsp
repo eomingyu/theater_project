@@ -48,13 +48,13 @@
 			</table>
 			<input name="idx" type="hidden" value="${detail.notice_idx}">
 			<div style="text-align:center;">
-				<button>저장</button>
+				<button class="adbutton">저장</button>
 			</div>
 		</form>
 			<div style="text-align:center;">
 				<form action="noticedetail.do">
 					<input name="idx" type="hidden" value="${detail.notice_idx}">
-					<button>취소</button>
+					<button class="adbutton">취소</button>
 				</form>
 			</div>
 	</div>

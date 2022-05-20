@@ -15,6 +15,9 @@
 }
 </style>
 <script type="text/javascript">
+function updateOk(){
+		document.forms[0].submit();
+}
 function deleteOk(){
 	if(confirm('해당 글을 삭제하시겠습니까?')==true){
 		document.forms[1].submit();
@@ -57,26 +60,24 @@ function deleteOk(){
 		
 	</div>
 	<!-- 수정, 삭제, 목록 버튼 -->
-	<div style="text-align:center;">	
+	<div style="text-align:center;">
 			<form action="noticeupdate.do" method="post">
 				<input name="idx" type="hidden" value="${detail.notice_idx}">
 				<input name="detail" type="hidden" value="${detail}">
 				<input name="pageNo" type="hidden" value="${pageNo}">
-				<button>수정</button>
 			</form>
-			
 			<form action="noticedelete.do" method="post">
 	 			<input name="idx" type="hidden" value="${detail.notice_idx}">
 	 			<input name="pageNo" type="hidden" value="${pageNo}">
-			 	<button type="button" onclick="deleteOk()">삭제</button>
 			 </form>
-			 
-		<form action="" method="post" name="formlist">
-			<input name="columns" type="hidden">
-			<input name="find" type="hidden">		
-			<input name="pageNo" type="hidden" value="${pageNo}">
-			<button type="button" onclick="goList()">목록</button>
-		</form>
+			<form action="" method="post" name="formlist">
+				<input name="columns" type="hidden">
+				<input name="find" type="hidden">		
+				<input name="pageNo" type="hidden" value="${pageNo}">
+			</form>
+				<button class="adbutton" onclick="updateOk()">수정</button>
+			 	<button type="button" class="adbutton" onclick="deleteOk()">삭제</button>
+				<button type="button" class="adbutton" onclick="goList()">목록</button>
 	</div>
 	<div style="margin:auto;">
 		<table class="notice" id="title">

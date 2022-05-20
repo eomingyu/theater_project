@@ -42,8 +42,8 @@
 				<span id="content">
 					<input name="find" placeholder="검색할 내용 입력" value="${find}">
 				</span>
-				<button>검색</button>
-				<button type="button" onclick="location.href='noticelist.do'">전체보기</button>
+				<button class="adbutton">검색</button>
+				<button type="button" class="adbutton" onclick="location.href='noticelist.do'">전체보기</button>
 			</form>
 		</div>
 		<table>

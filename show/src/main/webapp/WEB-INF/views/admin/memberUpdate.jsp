@@ -66,8 +66,8 @@
 		<form action="adminupdatesave.do" method="post">
 			<input type="hidden" name="id" value="${vo.id}">
 			<div style="text-align:center">
-				<button type="button" onclick="confirm('${vo.id}');">변경</button>
-				<button type="button" onclick="history.back();">취소</button>
+				<button type="button" class="adbutton" onclick="confirm('${vo.id}');">변경</button>
+				<button type="button" class="adbutton" onclick="history.back();">취소</button>
 			</div>
 		</form>
 	</div>

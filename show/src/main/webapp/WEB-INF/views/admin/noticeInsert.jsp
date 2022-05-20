@@ -41,8 +41,8 @@
 				</tr>
 			</table>
 			<div style="text-align:center;">
-				<button>등록</button>
-				<button type="button" onclick="location.href='noticelist.do'">취소</button>
+				<button class="adbutton">등록</button>
+				<button type="button" class="adbutton" onclick="location.href='noticelist.do'">취소</button>
 			</div>
 		</form>
 	</div>

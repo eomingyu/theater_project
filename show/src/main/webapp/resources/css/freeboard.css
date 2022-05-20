@@ -31,14 +31,20 @@ table {
 	border-collapse:collapse;
 	
 }
-
 tr,th,td{
+	text-align: left;
+}
+.lists>tr{
 		/* border: 1px solid #cccccc; */
 		padding: 4px;
-		text-align: left;
 		border-bottom: 1px solid #eee;
 }
-th {
+.lists>tr>td th{
+		/* border: 1px solid #cccccc; */
+		padding: 4px;
+		border-bottom: 1px solid #eee;
+}
+th.lists{
 		font-size:90%;
 		border-bottom:1px solid gray;
 }
@@ -257,6 +263,7 @@ section{
 	color:#fff;
 	background-color: #444;
 	border: 1px solid #444;
+	padding: 2px 7px;
 }
 .adbutton:hover{
 	background-color: #333;
