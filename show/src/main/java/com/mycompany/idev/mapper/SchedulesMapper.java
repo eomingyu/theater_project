@@ -13,4 +13,5 @@ public interface SchedulesMapper {
 	List<Schedules> selectDate(@Param("perform_date") Date perform_date,@Param("perform_idx") int perform_idx);
 	int getIdx(@Param("perform_idx") int perform_idx,@Param("perform_date") Date perform_date,@Param("start_time") String start_time);
 	Schedules getInfo(int idx);
+	List<Schedules> getDateTime(int idx);
 }

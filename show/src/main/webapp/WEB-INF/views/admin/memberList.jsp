@@ -86,8 +86,8 @@
 						<option value="3">승인 대기</option>
 					</select>
 				</span>
-				<button>검색</button>
-				<button type="button" onclick="location.href='memberlist.do'">전체보기</button>
+				<button class="adbutton">검색</button>
+				<button type="button" class="adbutton" onclick="location.href='memberlist.do'">전체보기</button>
 			</form>
 		</div>
 		<table>

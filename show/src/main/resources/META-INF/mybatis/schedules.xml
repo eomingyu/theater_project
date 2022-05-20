@@ -26,5 +26,9 @@
 		SELECT * FROM schedules
 		WHERE schedule_idx=#{schedule_idx}
 	</select>
-	
+	<select id="getDateTime" parameterType="int" resultType="Schedules">
+		SELECT perform_date, start_time FROM schedules
+		WHERE perform_idx=#{perform_idx}
+		ORDER BY perform_date, start_time
+	</select>
 </mapper>

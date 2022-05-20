@@ -78,13 +78,14 @@ function validCheck(){
 			</select>
 		</div>
 		<div>
-			<button type="button" onclick="validCheck()">등록</button>
-			<button type="button" onclick="location.href='main.do'">취소</button>
+			<button type="button" class="adbutton" onclick="validCheck()">등록</button>
+			<button type="button" class="adbutton" onclick="location.href='main.do'">취소</button>
 		</div>
 		<br>
 		<div id="info">
 			
 		</div>
+		<div id="datetime"></div>
 	</form>
 </section>
 <script type="text/javascript">
@@ -100,6 +101,16 @@ function toDate(timestamp){				//timestamp => date 변환 함수 yyyy-MM-dd
 	var fulldate = year+"-"+month+"-"+date2;
 	return fulldate;
 }
+function toDate2(timestamp){				//timestamp => date 변환 함수 MM월 dd일 (요일)
+	var date= new Date(timestamp);
+	var year = date.getFullYear()
+	var month = date.getMonth()+1
+	var date2 =  date.getDate()
+	var week = ['일', '월', '화', '수', '목', '금', '토'];
+	var dayOfWeek = week[date.getDay()];
+	var fulldate = month+"월 "+date2+"일 "+"("+dayOfWeek+")";
+	return fulldate;
+}
 document.querySelector("#performance").addEventListener('change',function(){
 	const frm = document.forms[0];
     const perform_idx = frm.perform_idx.value;
@@ -112,7 +123,10 @@ document.querySelector("#performance").addEventListener('change',function(){
 	        if(xhr.status ==200) {
 	            console.log(xhr.response);
 	            const info = JSON.parse(xhr.response).info;
+	            const datetime = JSON.parse(xhr.response).datetime;
 	            console.log(info);
+	            console.log(datetime);
+	            var text = "";
 	            if (info!=null) {
 	            	document.querySelector('#info').innerHTML='공연 제목 : '+info.perform_title
 	            		+'<br>'+'극장 : '+info.theater_name
@@ -121,7 +135,14 @@ document.querySelector("#performance").addEventListener('change',function(){
 	            	document.getElementById("date").max=toDate(info.end_date)
 	            	console.log(document.getElementById("date"))
 	            }
-	            
+	            if(datetime!=null){
+	            	for(var i=0;i<datetime.length;i++){
+						var pdate = datetime[i].perform_date;
+						var stime = datetime[i].start_time;
+	            		text+=toDate2(pdate)+"  "+stime+'<br>'
+	            	}
+	            	document.querySelector('#datetime').innerHTML= '공연 스케줄<br>'+text
+	            }
 	        }else {
 	            console.error('Error',xhr.status,xhr.statusText);
 	        }

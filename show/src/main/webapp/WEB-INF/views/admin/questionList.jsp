@@ -10,10 +10,9 @@
 <title>1:1 문의 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/freeboard.css">
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=IBM+Plex+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 *{
-	font-family: 'Hahmlet', serif;
-	font-family: 'IBM Plex Sans KR', sans-serif;	
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 </style>

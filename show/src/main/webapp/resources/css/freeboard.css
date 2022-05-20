@@ -253,3 +253,11 @@ section{
 .active:not([type="button"]):after {
   content: "\23F6";
 }
+.adbutton{
+	color:#fff;
+	background-color: #444;
+	border: 1px solid #444;
+}
+.adbutton:hover{
+	background-color: #333;
+}
