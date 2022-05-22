@@ -47,7 +47,7 @@
 				<button type="button" class="adbutton" onclick="location.href='questionlist.do'">전체보기</button>
 			</form>
 		</div>
-		<table>
+		<table class="lists">
 			<tr>
 				<th width="10%">No</th>
 				<th width="50%">제목</th>

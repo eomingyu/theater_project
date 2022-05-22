@@ -70,7 +70,7 @@
 	<h3>관리자 가입 승인</h3>
 	<hr>
 	<div style="margin:auto;">
-		<table>
+		<table class="lists">
 			<tr>
 			<th width="10%">No</th>
 			<th width="18%">아이디</th>

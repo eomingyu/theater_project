@@ -46,7 +46,7 @@
 				<button type="button" class="adbutton" onclick="location.href='noticelist.do'">전체보기</button>
 			</form>
 		</div>
-		<table>
+		<table class="lists">
 			<tr>
 			<th width="12%">No</th>
 			<th width="55%">제목</th>

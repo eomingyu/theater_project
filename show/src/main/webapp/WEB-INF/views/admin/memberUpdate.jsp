@@ -33,7 +33,7 @@
 	<h3>관리자 등록</h3>
 	<hr>
 	<div style="margin:auto;">
-		<table>
+		<table class="lists">
 			<tr>
 			<th width="13%">아이디</th>
 			<th width="13%">이름</th>

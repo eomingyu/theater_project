@@ -33,7 +33,7 @@
 	<h3>회원 삭제</h3>
 	<hr>
 	<div style="margin:auto;">
-		<table>
+		<table class="lists">
 			<tr>
 			<th width="13%">아이디</th>
 			<th width="13%">이름</th>
