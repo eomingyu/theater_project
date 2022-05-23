@@ -27,7 +27,7 @@
 <body>
 <!-- 메뉴바 include -->
 <%@include file="menubar.jsp" %>
-<section>
+<section class="sections">
 	<h3>공지사항 목록</h3>
 	<hr>
 	<div style="margin:auto;">

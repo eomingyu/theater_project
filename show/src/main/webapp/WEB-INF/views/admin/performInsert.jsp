@@ -109,7 +109,7 @@
 <body>
 <!-- 메뉴바 include -->
 <%@include file="menubar.jsp" %>
-<section>
+<section class="sections">
 	<h3>공연 등록</h3>
 	<hr>
 	<div style="margin:auto;">

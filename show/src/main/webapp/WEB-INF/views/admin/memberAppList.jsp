@@ -34,7 +34,7 @@
 			document.body.appendChild(form);
 			form.submit();
 		}else
-			alert('등록이 취소되었습니다.');
+			alert('작업이 취소되었습니다.');
 	}
 	function deleteMember(id){
 		var answer = prompt(id+"님의 관리자 가입을 거절하시겠습니까?\n거절하려면 '가입 거절'를 입력하세요.","")
@@ -51,7 +51,7 @@
 			document.body.appendChild(form);
 			form.submit();
 		}else
-			alert('삭제가 취소되었습니다.');
+			alert('작업이 취소되었습니다.');
 	
 	}
 </script>
@@ -66,7 +66,7 @@
 <body>
 <!-- 메뉴바 include -->
 <%@include file="menubar.jsp" %>
-<section>
+<section class="sections">
 	<h3>관리자 가입 승인</h3>
 	<hr>
 	<div style="margin:auto;">

@@ -35,12 +35,12 @@ tr,th,td{
 }
 .lists>tr{
 		/* border: 1px solid #cccccc; */
-		padding: 4px;
+		padding: 6px;
 		border-bottom: 1px solid #eee;
 }
 .list{
 		/* border: 1px solid #cccccc; */
-		padding: 4px;
+		padding: 6px;
 		border-bottom: 1px solid #eee;
 }
 .lists>tbody>tr>td th{
