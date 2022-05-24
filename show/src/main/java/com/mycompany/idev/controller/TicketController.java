@@ -112,7 +112,7 @@ public class TicketController {
 		int ticketno = Integer.parseInt(ticket_no);
 		int number = arr3.length;
 		Ticket vo = new Ticket();
-		vo.setId("aaaa");
+		vo.setId("aaaa3");
 		vo.setSchedule_idx(schedule_idx);
 		vo.setTicket_no(ticketno);
 		for(int i=0;i<number;i++) {
@@ -135,40 +135,52 @@ public class TicketController {
 		model.addAttribute("number", number);
 		return "ticket/ticketSuccess";
 	}
+	@GetMapping("ticket.do")
+	public String getTickets() {
+		
+		return "ticket/test";
+	}
 	@PostMapping("ticket.do")
 	public String getTicket(String id,Model model) {
 		List<Ticket> ticketnos = ticket_mapper.getIdTicket(id);
+		//예매한 수
 		int number = ticketnos.size();
 		//회원 예매번호 목록
 		List<Integer> ticketnos2 = new ArrayList<>();
 		for(int i=0;i<number;i++) {
 			ticketnos2.add(ticketnos.get(i).getTicket_no());
 		}
-		//행 열 번호 좌석 리스트
+		
 		int schedulelist[] = new int[number];
+		//행 열 번호 좌석 리스트
 		String seatlist[] = new String[number];
+		//좌석 수
 		int numlist[] = new int[number];
+		//예매 일시 리스트
 		Timestamp ticketdatelist[] = new Timestamp[number];
 		List<Schedules> scheduleinfo = new ArrayList<>();
 		List<Performance> performinfo = new ArrayList<>();
 		for(int i=0;i<number;i++) {
 			//예매 번호로 조회한 정보
 			List<Ticket> a = ticket_mapper.getTicket(ticketnos2.get(i));
-			schedulelist[i]=a.get(i).getSchedule_idx();
-			ticketdatelist[i] = a.get(i).getTicket_date();
-			int[] seats = new int[a.size()];
-			numlist[i]=a.size();
-			for(int j=0;j<a.size();j++) {
-				seats[i]= a.get(i).getSeat_idx();
+			if(a.get(0)!=null) {
+				schedulelist[i]=a.get(0).getSchedule_idx();
+				ticketdatelist[i] = a.get(0).getTicket_date();
+				int[] seats = new int[a.size()];
+				numlist[i]=a.size();
+				for(int j=0;j<a.size();j++) {
+					seats[j]= a.get(j).getSeat_idx();
+				}
+				Seat seat1;
+				String seat2="";
+				for(int j=0;j<numlist[i];j++) {
+					seat1 = seat_mapper.getOne(seats[j]);
+					seat2 += seat1.getSeat_row()+"-"+seat1.getNum()+", ";
+				}
+				String choicedseat=seat2.substring(0, seat2.length()-2);
+				logger.info(choicedseat);
+				seatlist[i]=choicedseat;
 			}
-			Seat seat1;
-			String seat2="";
-			for(int j=0;i<number;i++) {
-				seat1 = seat_mapper.getOne(seats[i]);
-				seat2 += seat1.getSeat_row()+"-"+seat1.getNum()+", ";
-			}
-			String choicedseat=seat2.substring(0, seat2.length()-2);
-			seatlist[i]=choicedseat;
 		}
 		for(int i=0;i<number;i++) {
 			scheduleinfo.add(schedules_mapper.getInfo(schedulelist[i]));
@@ -187,7 +199,7 @@ public class TicketController {
 			list.add(temp);
 		}
 		model.addAttribute("list", list);
-		return "";
+		return "ticket/test";
 	}
 	
 }
