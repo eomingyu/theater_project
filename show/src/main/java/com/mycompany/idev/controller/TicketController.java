@@ -154,7 +154,7 @@ public class TicketController {
 		int schedulelist[] = new int[number];
 		//행 열 번호 좌석 리스트
 		String seatlist[] = new String[number];
-		//좌석 수
+		//선택 좌석 수
 		int numlist[] = new int[number];
 		//예매 일시 리스트
 		Timestamp ticketdatelist[] = new Timestamp[number];
