@@ -10,12 +10,12 @@
 	</insert>
 	<select id="getTicket" parameterType="int" resultType="Ticket">
 		SELECT * FROM ticket
-		WHERE ticket_no=#{ticket_no}
+		WHERE ticket_no=#{ticket_no} AND cancel=0
 		ORDER BY ticket_no,seat_idx
 	</select>
 	<select id="getIdTicket" parameterType="String" resultType="Ticket">
 		SELECT DISTINCT ticket_no FROM ticket
-		WHERE id=#{id}
+		WHERE id=#{id} AND cancel=0
 	</select>
 	
 </mapper>
