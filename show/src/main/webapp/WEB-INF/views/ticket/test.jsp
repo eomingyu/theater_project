@@ -7,9 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예매내역 조회</title>
 </head>
 <body>
+<h3>예매 내역</h3>
+<br>
 <form action="ticket.do" method="post">
 	<input type="hidden" name="id" value="aaaa3">
 	<button>조회</button>
@@ -23,7 +25,8 @@
 		<th width="15%">공연일자</th>
 		<th width="10%">공연시간</th>
 		<th width="15%">좌석</th>
-		<th width="10%">인원</th>
+		<th width="5%">인원</th>
+		<th width="5%">취소</th>
 	</tr>
 	<c:forEach var="vo" items="${list}" varStatus="status">
 	<tr class="list">
@@ -37,6 +40,14 @@
  		<td>${vo.start_time}</td>
  		<td>${vo.seat}</td>
  		<td>${vo.num}명</td>
+ 		<td>
+ 		<!-- 현재 날짜 -->
+ 		<jsp:useBean id="now" class="java.util.Date"/>
+ 		<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
+ 		<c:if test="${vo.perform_date>today}">
+ 			<button type="button" onclick="cancel.do">취소하기</button>
+ 		</c:if>
+ 		</td>
  	</tr>
 	 	</c:forEach>
 	<c:if test="${fn:length(list)==0 }">

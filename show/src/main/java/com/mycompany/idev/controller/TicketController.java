@@ -202,4 +202,9 @@ public class TicketController {
 		return "ticket/test";
 	}
 	
+	@GetMapping("cancel.do")
+	public String cancel() {
+		
+		return "";
+	}
 }
