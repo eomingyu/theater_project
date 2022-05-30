@@ -23,10 +23,10 @@
 		<th width="15%">공연</th>
 		<th width="15%">극장</th>
 		<th width="15%">공연일자</th>
-		<th width="10%">공연시간</th>
+		<th width="8%">공연시간</th>
 		<th width="15%">좌석</th>
 		<th width="5%">인원</th>
-		<th width="5%">취소</th>
+		<th width="7%">예매취소</th>
 	</tr>
 	<c:forEach var="vo" items="${list}" varStatus="status">
 	<tr class="list">
@@ -45,7 +45,10 @@
  		<jsp:useBean id="now" class="java.util.Date"/>
  		<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
  		<c:if test="${vo.perform_date>today}">
- 			<button type="button" onclick="cancel.do">취소하기</button>
+ 			<form action="cancel.do" method="post">
+ 			<input type="hidden" name="ticket_no" value="${vo.ticket_no}">
+ 			<button>취소</button>
+ 			</form>
  		</c:if>
  		</td>
  	</tr>

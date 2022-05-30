@@ -19,6 +19,7 @@
 	<select id="getIdTicket" parameterType="String" resultType="Ticket">
 		SELECT DISTINCT ticket_no FROM ticket
 		WHERE id=#{id} AND cancel=0
+		ORDER BY ticket_no DESC
 	</select>
 	<!-- 예매 취소 -->
 	<update id="cancelTicket" parameterType="int">
@@ -30,5 +31,6 @@
 	<select id="getIdCancelledTicket" parameterType="String" resultType="Ticket">
 		SELECT DISTINCT ticket_no FROM ticket
 		WHERE id=#{id} AND cancel=1
+		ORDER BY ticket_no DESC
 	</select>
 </mapper>

@@ -42,7 +42,7 @@ function validCheck(){
 <body>
 <!-- 메뉴바 include -->
 <%@include file="menubar.jsp" %>
-<section>
+<section class="sections">
 	<h3>공연 스케줄 등록</h3>
 	<hr>
 	<form action="scheduleinsert.do" method="post">

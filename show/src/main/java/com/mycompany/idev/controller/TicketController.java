@@ -150,7 +150,6 @@ public class TicketController {
 		for(int i=0;i<number;i++) {
 			ticketnos2.add(ticketnos.get(i).getTicket_no());
 		}
-		
 		int schedulelist[] = new int[number];
 		//행 열 번호 좌석 리스트
 		String seatlist[] = new String[number];
@@ -163,28 +162,28 @@ public class TicketController {
 		for(int i=0;i<number;i++) {
 			//예매 번호로 조회한 정보
 			List<Ticket> a = ticket_mapper.getTicket(ticketnos2.get(i));
-			if(a.get(0)!=null) {
-				schedulelist[i]=a.get(0).getSchedule_idx();
-				ticketdatelist[i] = a.get(0).getTicket_date();
-				int[] seats = new int[a.size()];
-				numlist[i]=a.size();
+			if(a.get(0)!=null) {	//예매번호 정보가 있을 때
+				schedulelist[i]=a.get(0).getSchedule_idx();		//스케줄 번호
+				ticketdatelist[i] = a.get(0).getTicket_date();	//예매 일시
+				int[] seats = new int[a.size()];				//좌석 번호 (배열 선언)
+				numlist[i]=a.size();							//예매 인원 수
 				for(int j=0;j<a.size();j++) {
-					seats[j]= a.get(j).getSeat_idx();
+					seats[j]= a.get(j).getSeat_idx();			//좌석 번호 (배열 저장)
 				}
 				Seat seat1;
 				String seat2="";
 				for(int j=0;j<numlist[i];j++) {
 					seat1 = seat_mapper.getOne(seats[j]);
-					seat2 += seat1.getSeat_row()+"-"+seat1.getNum()+", ";
+					seat2 += seat1.getSeat_row()+"-"+seat1.getNum()+", ";	//좌석 행번호+열번호 String으로 합산
 				}
-				String choicedseat=seat2.substring(0, seat2.length()-2);
+				String choicedseat=seat2.substring(0, seat2.length()-2);	//마지막 ", " 제거
 				logger.info(choicedseat);
-				seatlist[i]=choicedseat;
+				seatlist[i]=choicedseat;									//좌석들 저장
 			}
 		}
 		for(int i=0;i<number;i++) {
-			scheduleinfo.add(schedules_mapper.getInfo(schedulelist[i]));
-			performinfo.add(perform_mapper.getOne(scheduleinfo.get(i).getPerform_idx()));
+			scheduleinfo.add(schedules_mapper.getInfo(schedulelist[i]));		//스케줄 번호로 스케줄 정보 조회
+			performinfo.add(perform_mapper.getOne(scheduleinfo.get(i).getPerform_idx()));	//공연 변호로 공연 정보 조회
 		}
 		List<Temp> list = new ArrayList<>();
 		for (int i=0;i<number;i++) {
@@ -202,9 +201,9 @@ public class TicketController {
 		return "ticket/test";
 	}
 	
-	@GetMapping("cancel.do")
-	public String cancel() {
-		
-		return "";
+	@PostMapping("cancel.do")
+	public String cancel(int ticket_no) {
+		ticket_mapper.cancelTicket(ticket_no);
+		return "redirect:ticket.do";
 	}
 }
