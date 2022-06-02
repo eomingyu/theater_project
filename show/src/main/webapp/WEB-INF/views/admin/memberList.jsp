@@ -103,7 +103,7 @@
 			<c:forEach var="vo" items="${list}" varStatus="status">
 			<tr class="list">
 				<td>${status.count+(page.pageNo-1)*10}</td> 	
-		 		<td><%-- <a href="detail?idx=${vo.id}&pageNo=${page.pageNo}" class="title"> --%>${vo.id}</td>
+		 		<td>${vo.id}</td>
 		 		<td>${vo.name }</td>
 		 		<td>${vo.birth_date}</td>
 		 		<td>
@@ -119,35 +119,23 @@
 		 		<c:if test="${vo.authority==3}">
 		 			<span style="color:blue;">승인 대기</span>
 		 		</c:if>
-		 		<%-- <c:choose>
-		 			<c:when test="${vo.authority==1}">
-		 				<span>일반 회원</span>
-		 			</c:when>
-		 			<c:otherwise>
-		 				<span style="color:red;font-weight:bolder;">관리자</span>
-		 			</c:otherwise>
-		 		</c:choose> --%>
 		 		</td>
 		 		<td>
-	<div class="dropdown">
-	  <button class="dropbtn">•••</button>
-	  <div class="dropdown-content">
-	    <a href="javascript:updateAdmin('${vo.id}',${vo.authority})">관리자로 변경</a>
-	    <a href="javascript:deleteMember('${vo.id}')">회원 삭제</a>
-	  </div>
-	</div>
-	<%-- 	 			<form action="memberUpdate.do" method="post">
-		 			<input type="hidden" name="id" value="${vo.id}">
-						<button>정보 변경</button>
-					</form> --%>
+					<div class="dropdown">
+						<button class="dropbtn">•••</button>
+						<div class="dropdown-content">
+					  		<a href="javascript:updateAdmin('${vo.id}',${vo.authority})">관리자로 변경</a>
+					  		<a href="javascript:deleteMember('${vo.id}')">회원 삭제</a>
+						</div>
+					</div>
 				</td>
 		 	</tr>
 	 	 	</c:forEach>
 	 	 	<!-- list의 데이터가 없을 때 list애트리뷰트가 null X,size()가 0(jstl의 함수) -->
 		<c:if test="${fn:length(list)==0 }">
-					<tr>
-						<td colspan="7" style="text-align:center;"><br>조회 결과가 없습니다.</td>
-					</tr>
+			<tr>
+				<td colspan="7" style="text-align:center;"><br>조회 결과가 없습니다.</td>
+			</tr>
 		</c:if>
 		</table>
 	</div>

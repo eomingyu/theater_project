@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/freeboard.css">
+<link rel="icon" type="image/ico" href="${pageContext.request.contextPath }/resources/image/1683796.ico"/>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=IBM+Plex+Sans+KR:wght@300&display=swap');
 *{
