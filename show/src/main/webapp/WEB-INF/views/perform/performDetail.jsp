@@ -24,7 +24,7 @@ ul{
 .perform_info{
 	margin:20px;
 	align-items:center;
-	width:380px;
+	width:390px;
 }
 .perform_button{
 	align-items:center;
@@ -60,7 +60,7 @@ ul{
 				</div>
 		</div>
 		<div class="clearp">
-			<div id="detail">${detail.detail}</div>
+			<div id="detail"><pre>${detail.detail}</pre></div>
 		</div>
 		<div class="clearp"><button type="button" onclick="history.back();">뒤로가기</button></div>
 	</div>

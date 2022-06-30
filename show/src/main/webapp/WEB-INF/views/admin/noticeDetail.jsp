@@ -61,54 +61,54 @@ function deleteOk(){
 	</div>
 	<!-- 수정, 삭제, 목록 버튼 -->
 	<div style="text-align:center;">
-			<form action="noticeupdate.do" method="post">
-				<input name="idx" type="hidden" value="${detail.notice_idx}">
-				<input name="detail" type="hidden" value="${detail}">
-				<input name="pageNo" type="hidden" value="${pageNo}">
-			</form>
-			<form action="noticedelete.do" method="post">
-	 			<input name="idx" type="hidden" value="${detail.notice_idx}">
-	 			<input name="pageNo" type="hidden" value="${pageNo}">
-			 </form>
-			<form action="" method="post" name="formlist">
-				<input name="columns" type="hidden">
-				<input name="find" type="hidden">		
-				<input name="pageNo" type="hidden" value="${pageNo}">
-			</form>
-				<button class="adbutton" onclick="updateOk()">수정</button>
-			 	<button type="button" class="adbutton" onclick="deleteOk()">삭제</button>
-				<button type="button" class="adbutton" onclick="goList()">목록</button>
+		<form action="noticeupdate.do" method="post">
+			<input name="idx" type="hidden" value="${detail.notice_idx}">
+			<input name="detail" type="hidden" value="${detail}">
+			<input name="pageNo" type="hidden" value="${pageNo}">
+		</form>
+		<form action="noticedelete.do" method="post">
+ 			<input name="idx" type="hidden" value="${detail.notice_idx}">
+ 			<input name="pageNo" type="hidden" value="${pageNo}">
+		 </form>
+		<form action="" method="post" name="formlist">
+			<input name="columns" type="hidden">
+			<input name="find" type="hidden">		
+			<input name="pageNo" type="hidden" value="${pageNo}">
+		</form>
+		<button class="adbutton" onclick="updateOk()">수정</button>
+	 	<button type="button" class="adbutton" onclick="deleteOk()">삭제</button>
+		<button type="button" class="adbutton" onclick="goList()">목록</button>
 	</div>
 	<div style="margin:auto;">
 		<table class="notice" id="title">
-		<c:choose>
-			<c:when test="${detail.last_idx==-1}">
-			<tr>
-				<th class="notice" width="20%">이전글</th>
-				<td width="80%">${detail.last_title}</td>
-			</tr>
-			</c:when>
-			<c:otherwise>
-			<tr>
-				<th class="notice" width="20%"><label for="last">이전글</label></th>
-				<td width="80%"><a href="noticedetail.do?idx=${detail.last_idx}" class="title" id="last">${detail.last_title}</a></td>
-			</tr>
-			</c:otherwise>
-		</c:choose>
 			<c:choose>
-			<c:when test="${detail.next_idx==99999}">
-			<tr>
-				<th class="notice" width="20%">다음글</th>
-				<td width="80%">${detail.next_title}</td>
-			</tr>
-			</c:when>
-			<c:otherwise>
-			<tr>
-				<th class="notice" width="20%"><label for="next">다음글</label></th>
-				<td width="80%"><a href="noticedetail.do?idx=${detail.next_idx}" class="title" id="next">${detail.next_title}</a></td>
-			</tr>
-			</c:otherwise>
-		</c:choose>
+				<c:when test="${detail.last_idx==-1}">
+					<tr>
+						<th class="notice" width="20%">이전글</th>
+						<td width="80%">${detail.last_title}</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<th class="notice" width="20%"><label for="last">이전글</label></th>
+						<td width="80%"><a href="noticedetail.do?idx=${detail.last_idx}" class="title" id="last">${detail.last_title}</a></td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${detail.next_idx==99999}">
+					<tr>
+						<th class="notice" width="20%">다음글</th>
+						<td width="80%">${detail.next_title}</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<th class="notice" width="20%"><label for="next">다음글</label></th>
+						<td width="80%"><a href="noticedetail.do?idx=${detail.next_idx}" class="title" id="next">${detail.next_title}</a></td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 		</table>
 	</div>
 </section>
